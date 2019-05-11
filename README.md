@@ -7,11 +7,25 @@ Segment display widget for [Flutter](https://flutter.dev).
 Supports multiple types of segment displays and segment customization.
 
 ## Contents
+* [Features](#features)
 * [Installation](#installation)
 * Usage
   - [Seven-segment display](#seven-segment-display)
   - [Fourteen-segment display](#fourteen-segment-display)
+* [Styles and customization](#styles-and-customization)
+  - [Segment style](#segment-style)
+  - [Custom segment styles](#custom-segment-styles)
 * [Features and bugs](#features-and-bugs)
+
+## Features
+- 7-segment display
+- 14-segment display
+- Customizable segment shapes (segment styles)
+
+**Planned**
+- 16-segment display
+- Support for colons (:) and dots (.)
+
 
 ## Installation
 1. Add to dependencies (pubspec.yaml file)
@@ -46,6 +60,114 @@ FourteenSegmentDisplay(
   textSize: 12.0,
 );
 ```
+
+## Styles and customization
+You can customize segment display with:
+- `characterSpacing`- space between individual characters
+- `backgroundColor` - display background color
+- `segmentStyle` - style for segments (shape, color,...), see [segment style](#segment-style)
+
+Example:
+```dart
+SevenSegmentDisplay(
+  text: "123",
+  textSize: 12.0,
+  characterSpacing: 10.0,
+  backgroundColor: Colors.transparent,
+  segmentStyle: HexSegmentStyle(
+    enabledColor: Colors.red,
+    disabledColor: Colors.red.withOpacity(0.15),
+  ),
+);
+```
+
+### Segment style
+To change segment color, size or shape, use segment style.
+
+**There are following segment styles:**
+- DefaultSegmentStyle
+- HexSegmentStyle
+- RectSegmentStyle
+
+and you can also **create or own style (shape)** - see [custom segment styles](#custom-segment-styles)
+
+Example:
+```dart
+SevenSegmentDisplay(
+  text: "123",
+  textSize: 12.0,
+  segmentStyle: HexSegmentStyle(
+    enabledColor: Colors.red,
+    disabledColor: Colors.red.withOpacity(0.15),
+    segmentBaseSize: const Size(1.0, 4.0),
+  ),
+);
+```
+- `enabledColor` - color of enabled segments
+- `disabledColor` - color of disabled segments
+- `segmentBaseSize` - size ratio for segments; `Size(1.0, 4.0)` basically means ratio 1:4 *(width:length)*
+> NOTE: `SegmentStyle.segmentBaseSize` * `SegmentDisplay.textSize` = segmentSize
+
+
+
+### Custom segment styles
+To create your own segment style (shape), extends `SegmentStyle` class and implement methods 
+`createHorizontalPath`, `createVerticalPath`, `createDiagonalBackwardPath` and `createDiagonalForwardPath`.
+
+```dart
+class CustomSegmentStyle extends SegmentStyle {
+
+  const RectSegmentStyle({
+    Size segmentBaseSize,
+    Color enabledColor,
+    Color disabledColor,
+  }) : super(
+          segmentBaseSize: segmentBaseSize,
+          enabledColor: enabledColor,
+          disabledColor: disabledColor,
+        );
+  @override
+  Path createHorizontalPath(SegmentPosition position, Size segmentSize) {
+    // ...
+  }
+  
+  @override
+  Path createVerticalPath(SegmentPosition position, Size segmentSize) {
+    // ...
+  }
+  
+  @override
+  Path createDiagonalBackwardPath(SegmentPosition position, Size segmentSize) {
+    // ...
+  }
+  
+  @override
+  Path createDiagonalForwardPath(SegmentPosition position, Size segmentSize) {
+    // ...
+  }
+}
+```
+You can also customize shape for individual segments by overriding `createPath**` methods.
+For 7-segment display, there are `createPath7*` methods, for 14-segment display `createPath14*` and so on.
+
+Example: if you want to change the shape of the top segment in 7-segment display, you just have to override `createPath7A` method.
+
+```dart
+class CustomSegmentStyle extends SegmentStyle {
+
+  // ..
+  
+  @override
+  Path createPath7A(Size segmentSize, double padding) {
+    // ...
+  }
+  
+  // ...
+  
+}
+```
+> NOTE: `createPath**` methods use `createHorizontalPath`/`createVerticalPath`/`createDiagonalBackwardPath`/`createDiagonalForwardPath` by default so you don't have to override all `createPath7*` methods.
+
 
 ## Features and bugs
 
