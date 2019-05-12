@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:meta/meta.dart';
+import 'package:flutter/foundation.dart';
 import 'package:segment_display/src/segment_style/segment_style.dart';
 
 /// Single segment in segment display such as [SevenSegmentDisplay].
