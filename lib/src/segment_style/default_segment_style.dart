@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:segment_display/src/segment/segment_position.dart';
 import 'package:segment_display/src/segment_style/segment_style.dart';
 
-/// Default [SegmentStyle]
+/// Default (trapezoid) [SegmentStyle].
 class DefaultSegmentStyle extends SegmentStyle {
   /// Space between segments
   final double segmentSpacing;

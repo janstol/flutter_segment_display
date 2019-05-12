@@ -4,9 +4,12 @@ import 'package:flutter/widgets.dart';
 import 'package:segment_display/src/segment/segment_position.dart';
 import 'package:segment_display/src/segment_style/segment_style.dart';
 
-/// Simple rectangular [SegmentStyle]
+/// Simple rectangular [SegmentStyle].
+///
+/// Horizontal and vertical segments have rectangular shape,
+/// diagonal segments have 'skewed' rectangular shape.
 class RectSegmentStyle extends SegmentStyle {
-  /// Creates rectangular [SegmentStyle]
+  /// Creates rectangular [SegmentStyle].
   const RectSegmentStyle({
     Size segmentBaseSize,
     Color enabledColor,

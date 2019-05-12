@@ -4,11 +4,13 @@ import 'package:segment_display/src/display/segment_display.dart';
 import 'package:segment_display/src/segment/segment.dart';
 import 'package:segment_display/src/segment_style/segment_style.dart';
 
-/// 14-segment display stateless widget
+/// 14-segment display stateless widget.
+///
+/// [Wikipedia: Fourteen-segment display](https://en.wikipedia.org/wiki/Fourteen-segment_display)
 class FourteenSegmentDisplay extends SegmentDisplay {
-  /// Creates a 14-segment display
+  /// Creates a 14-segment display.
   ///
-  /// see [SegmentDisplay] for more info
+  /// see [SegmentDisplay] for more info about properties and methods.
   const FourteenSegmentDisplay({
     Key key,
     @required String text,

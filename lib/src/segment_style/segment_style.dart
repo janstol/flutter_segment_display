@@ -2,26 +2,29 @@ import 'dart:ui';
 
 import 'package:segment_display/src/segment/segment_position.dart';
 
-/// Style describes how to draw segments ([Path]) and how they should look like ([Color] etc.).
+/// Style description that determines color, size (ratio) and shape of [Segment] in [SegmentDisplay].
 ///
-/// To create your own segment style, extend this [SegmentStyle] class and implement
+/// To create your own segment style, extend this class and implement
 /// [createHorizontalPath], [createVerticalPath], [createDiagonalForwardPath] and
 /// [createDiagonalBackwardPath] methods.
 ///
-/// To customize each segment separately, you can override `createPath*` methods:
-///   * createPath7*   for 7-segment display
-///   * createPath14*  for 14-segment display
+/// To customize each segment individually, you can also override `createPath*` methods:
+///   * `createPath7*`    for 7-segment display
+///   * `createPath14*`   for 14-segment display
 ///
 /// For example: if you want to change the shape of the top segment in 7-segment
 /// display, you can override [createPath7A] method.
-/// You don't have to override all `createPath*` methods.
+/// NOTE: `createPath**` methods use `createHorizontalPath`/`createVerticalPath`/`createDiagonalBackwardPath`/`createDiagonalForwardPath`
+/// by default so you don't have to override all `createPath7*` methods.
 abstract class SegmentStyle {
-  /// Base size of every segment used as size ratio for each segment
+  /// Base size of every segment - used as a size ratio for each segment.
   ///
   /// * [Size.width] represents 'thickness' of segment
   /// * [Size.height] represents 'length' of segment
   ///
-  /// example: Size(1.0, 4.0) means that segment will be 1 unit wide/thick and 4 units long
+  /// Example: Size(1.0, 4.0) basically means that ratio will be 1:4 *(width:length)* that segment will be 1 unit wide/thick and 4 units long.
+  ///
+  /// NOTE: [SegmentStyle.segmentBaseSize] * [SegmentDisplay.textSize] = segmentSize
   final Size segmentBaseSize;
 
   /// [Color] of every enabled segment
@@ -38,28 +41,27 @@ abstract class SegmentStyle {
         this.enabledColor = enabledColor ?? const Color(0xffff0000),
         this.disabledColor = disabledColor ?? const Color(0x2fff0000);
 
-  ///
-  /// Base methods for creating path for segments
-  ///
-  /// You can customize each segment path separately by overriding createPath*
-  /// methods (see below)
-  ///
 
-  /// Default method to create path for horizontal segments
+  // Base methods for creating path for segments
+  //
+  // You can customize each segment path separately by overriding createPath*
+  // methods (see below)
+
+  /// Creates path for horizontal (`-`) segments.
   Path createHorizontalPath(SegmentPosition position, Size segmentSize);
 
-  /// Default method to create path for vertical segments
+  /// Creates path for vertical (`|`) segments
   Path createVerticalPath(SegmentPosition position, Size segmentSize);
 
-  /// Default method to create path for diagonal 'forward' segments
+  /// Creates path for diagonal 'forward' (`/`) segments
   Path createDiagonalForwardPath(SegmentPosition position, Size segmentSize);
 
-  /// Default method to create path for diagonal 'backward' segments
+  /// Creates path for diagonal 'backward' (`\`) segments
   Path createDiagonalBackwardPath(SegmentPosition position, Size segmentSize);
 
-  ///
-  /// 7-Segment
-  ///
+  //
+  // 7-Segment
+  //
 
   ///
   /// Creates path for top segment in 7-segment display
@@ -104,9 +106,9 @@ abstract class SegmentStyle {
         segmentSize,
       );
 
-  ///
-  /// 14-Segment
-  ///
+  //
+  // 14-Segment
+  //
 
   /// Creates path for top segment in 14-segment display
   Path createPath14A(Size segmentSize, double padding) =>

@@ -3,6 +3,7 @@ library segment_display;
 // segments
 export 'package:segment_display/src/segment/segment.dart';
 export 'package:segment_display/src/segment/segment_position.dart';
+export 'package:segment_display/src/character_segment_map.dart';
 
 // displays
 export 'package:segment_display/src/display/segment_display.dart';

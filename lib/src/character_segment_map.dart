@@ -1,12 +1,11 @@
-/// Provides mappings from character (string) to int (hex)
-/// which represents enabled and disabled segments for given character
+/// Provides mappings from character (string) to hexadecimal value (integer).
+/// Hex value represents enabled and disabled segments for given character.
 ///
 /// Example for 7-segment display:
-/// 0 is 0x7E = 1111110 in binary
-/// this means that every segment except the middle one is enabled
+/// `0` DEC = `0x7E` HEX = `1111110` BIN
+/// which means that every segment except the middle one is enabled
 class CharacterSegmentMap {
-  /// Characters that can be displayed on 7-segment display mapped to a hex value
-  /// which represents enabled and disabled segments for given character
+  /// Characters that can be displayed on 7-segment display.
   static const seven = <String, int>{
     "0": 0x7E,
     "1": 0x30,
@@ -43,8 +42,7 @@ class CharacterSegmentMap {
     "y": 0x3B,
   };
 
-  /// Characters that can be displayed on 14-segment display mapped to a hex value
-  /// which represents enabled and disabled segments for given character
+  /// Characters that can be displayed on 14-segment display.
   static const fourteen = <String, int>{
     '0': 0x3F0C,
     '1': 0x1808,

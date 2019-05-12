@@ -105,7 +105,7 @@ SevenSegmentDisplay(
 ```
 - `enabledColor` - color of enabled segments
 - `disabledColor` - color of disabled segments
-- `segmentBaseSize` - size ratio for segments; `Size(1.0, 4.0)` basically means ratio 1:4 *(width:length)*
+- `segmentBaseSize` - size ratio for segments; `Size(1.0, 4.0)` basically means that ratio will be 1:4 *(width:length)*
 > NOTE: `SegmentStyle.segmentBaseSize` * `SegmentDisplay.textSize` = segmentSize
 
 

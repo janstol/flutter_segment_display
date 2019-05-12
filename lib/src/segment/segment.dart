@@ -3,9 +3,9 @@ import 'dart:ui';
 import 'package:meta/meta.dart';
 import 'package:segment_display/src/segment_style/segment_style.dart';
 
-/// Single segment in segment display such as [SevenSegmentDisplay]
+/// Single segment in segment display such as [SevenSegmentDisplay].
 class Segment {
-  /// Describes how to draw segment on canvas (shape)
+  /// Describes shape of segment (how to draw segment on canvas)
   Path path;
 
   /// State of segment - on or off

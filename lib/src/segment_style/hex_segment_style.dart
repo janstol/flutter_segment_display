@@ -3,14 +3,16 @@ import 'dart:ui';
 import 'package:segment_display/src/segment/segment_position.dart';
 import 'package:segment_display/src/segment_style/segment_style.dart';
 
-/// Hexagonal [SegmentStyle]
+/// Elongated hexagon [SegmentStyle].
+///
+/// - [example](https://upload.wikimedia.org/wikipedia/commons/a/ab/7-segment_abcdefg.svg)
 class HexSegmentStyle extends SegmentStyle {
-  /// Space between segments
+  /// Space between neighbouring segments
   final double segmentSpacing;
 
   final double _halfSpace;
 
-  /// Creates hexagonal [SegmentStyle]
+  /// Creates elongated hexagon [SegmentStyle].
   const HexSegmentStyle({
     Size segmentBaseSize,
     Color enabledColor,

@@ -10,28 +10,33 @@ import 'package:segment_display/src/segment_display_painter.dart';
 
 /// This class represents general segment display.
 ///
-/// To create concrete segment display, extend [SegmentDisplay] class
-/// and implement [createSingleCharacter] method.
+/// To create concrete segment display, extend [SegmentDisplay] class and implement
+/// [createSingleCharacter] method.
 abstract class SegmentDisplay extends StatelessWidget {
-  /// Characters to be displayed
+  /// Characters to be displayed on display.
   final String text;
 
-  /// Size of characters on display
+  /// Size of characters on display.
   ///
-  /// [SegmentStyle.segmentBaseSize] is multiplied by [textSize] -> this creates
-  /// final size of segments
+  /// NOTE: [SegmentStyle.segmentBaseSize] * [textSize] = [segmentSize]
   final double textSize;
 
   /// Style for segments which defines shape, color or size for segments.
   ///
-  /// example: [DefaultSegmentStyle], [HexSegmentStyle]
+  /// Example: [DefaultSegmentStyle], [HexSegmentStyle]
   final SegmentStyle segmentStyle;
 
   /// Number of characters to display, used when building display.
-  /// The [text] length will be used, when no count is provided.
   ///
-  /// If you set [characterCount] for example to 3 and [text] to "1"
-  /// this will display like "__1" (left padded)
+  /// The [text] length will be used when no count is provided.
+  ///
+  /// If [characterCount] > [text.length] then text will be left padded.
+  /// This also means if [characterCount] < [text.lenght] then only last X characters
+  /// will be displayed (based on [characterCount]).
+  ///
+  /// For example:
+  ///  * [characterCount] is set to 3 and [text] value to "1" - this will be displayed like "__1" (left padded).
+  ///  * [characterCount] is set to 1 and [text] value to "123" - this will be displayed like "3" (only last character).
   final int characterCount;
 
   /// Space between individual characters
@@ -40,8 +45,9 @@ abstract class SegmentDisplay extends StatelessWidget {
   /// [Color] of display background
   final Color backgroundColor;
 
-  /// Mappings from character (string) to int (hex)
-  /// which represents enabled and disabled segments for given character
+  /// Mappings from character (string) to int (hex) which represents enabled and
+  /// disabled segments for given character.
+  ///
   ///   * [CharacterSegmentMap.seven] for 7-segment display
   ///   * [CharacterSegmentMap.fourteen] for 14-segment display
   ///   * ...
@@ -62,7 +68,7 @@ abstract class SegmentDisplay extends StatelessWidget {
         backgroundColor = backgroundColor ?? const Color(0xff000000),
         super(key: key);
 
-  /// Current size of segments
+  /// Size of segments.
   ///
   /// * [Size.width] represents 'thickness' of segment
   /// * [Size.height] represents 'length' of segment
@@ -90,11 +96,10 @@ abstract class SegmentDisplay extends StatelessWidget {
     );
   }
 
-  /// Returns true when the display can display given [character].
-  /// Otherwise returns false.
+  /// Returns `true` when [character] can be displayed on the display.
   bool canDisplay(String character) => characterMap.containsKey(character);
 
-  /// Creates whole display (all segments)
+  /// Creates whole display - all characters (all segments)
   List<Segment> createDisplaySegments(int charCount, Size size) {
     final segments = <Segment>[];
 
@@ -124,7 +129,7 @@ abstract class SegmentDisplay extends StatelessWidget {
     return segments;
   }
 
-  /// Returns current [Size] of whole display
+  /// Returns current [Size] of whole display.
   Size computeSize(int charCount) {
     final width = charCount * (2 * segmentSize.width + segmentSize.height);
     final widthOffset = characterSpacing * (charCount - 1);
@@ -133,6 +138,6 @@ abstract class SegmentDisplay extends StatelessWidget {
     return Size(width + widthOffset, height);
   }
 
-  /// Creates segments to display single character
+  /// Creates segments to display a single character.
   List<Segment> createSingleCharacter(int charIndex);
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:segment_display/src/segment/segment.dart';
 
-/// Painter used for painting display segments
+/// [CustomPainter] used for painting display segments
 class SegmentDisplayPainter extends CustomPainter {
   /// [Paint] style for enabled segments
   Paint _enabledPaint;
