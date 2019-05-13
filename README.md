@@ -12,6 +12,7 @@ Supports multiple types of segment displays and segment customization.
 * Usage
   - [Seven-segment display](#seven-segment-display)
   - [Fourteen-segment display](#fourteen-segment-display)
+  - [Sixteen-segment display](#sixteen-segment-display)
 * [Styles and customization](#styles-and-customization)
   - [Segment style](#segment-style)
   - [Custom segment styles](#custom-segment-styles)
@@ -20,25 +21,33 @@ Supports multiple types of segment displays and segment customization.
 ## Features
 - 7-segment display
 - 14-segment display
+- 16-segment display
 - Customizable segment shapes (segment styles)
 
 **Planned**
-- 16-segment display
-- Support for colons (:) and dots (.)
+- Support for decimal point (`.`)
+- Support for colons (`:`)
 
 
-## Installation
-1. Add to dependencies (pubspec.yaml file)
+## [Installation](https://pub.dev/packages/segment_display#-installing-tab-)
+1. **Depend on it**
+
+Add this to your package's pubspec.yaml file:
 ```yaml
 dependencies:
-  segment_display: ^0.1.0
+  segment_display: ^0.2.0
 ```
-2. Install
+2. **Install it**
+
+You can install packages from the command line:
 ```
 $ flutter packages get
 ```
+Alternatively, your editor might support flutter packages get. Check the docs for your editor to learn more.
 
-3. Import
+3. **Import it**
+
+Now in your Dart code, you can use:
 ```dart
 import 'package:segment_display/segment_display.dart';
 ```
@@ -56,6 +65,14 @@ SevenSegmentDisplay(
 ### Fourteen-segment display
 ```dart
 FourteenSegmentDisplay(
+  text: "123",
+  textSize: 12.0,
+);
+```
+
+### Sixteen-segment display
+```dart
+SixteenSegmentDisplay(
   text: "123",
   textSize: 12.0,
 );

@@ -78,9 +78,9 @@ class DefaultSegmentStyle extends SegmentStyle {
       ..close();
   }
 
-  ///
-  /// 7-segment overrides
-  ///
+  //
+  // 7-segment overrides
+  //
 
   @override
   Path createPath7A(Size segmentSize, double padding) {
@@ -181,9 +181,9 @@ class DefaultSegmentStyle extends SegmentStyle {
       ..close();
   }
 
-  ///
-  /// 14-segment overrides
-  ///
+  //
+  // 14-segment overrides
+  //
 
   @override
   Path createPath14A(Size segmentSize, double padding) =>
@@ -250,6 +250,7 @@ class DefaultSegmentStyle extends SegmentStyle {
   @override
   Path createPath14I(Size segmentSize, double padding) {
     final pos = SegmentPosition.fourteenI(segmentSize, padding);
+    final halfWidth = segmentSize.width / 2.0;
 
     return Path()
       ..moveTo(pos.left, pos.top + _halfSpace)
@@ -259,8 +260,8 @@ class DefaultSegmentStyle extends SegmentStyle {
         pos.top + segmentSize.height - _halfSpace,
       )
       ..lineTo(
-        pos.left + segmentSize.width / 2.0,
-        pos.top + segmentSize.height + segmentSize.width / 2.0 - _halfSpace,
+        pos.left + halfWidth,
+        pos.top + segmentSize.height + halfWidth - _halfSpace,
       )
       ..lineTo(pos.left, pos.top + segmentSize.height - _halfSpace)
       ..close();
@@ -269,14 +270,129 @@ class DefaultSegmentStyle extends SegmentStyle {
   @override
   Path createPath14L(Size segmentSize, double padding) {
     final pos = SegmentPosition.fourteenL(segmentSize, padding);
+    final halfWidth = segmentSize.width / 2.0;
 
     return Path()
       ..moveTo(pos.left, pos.top + _halfSpace)
-      ..lineTo(pos.left + segmentSize.width / 2.0,
-          pos.top - segmentSize.width / 2.0 + _halfSpace)
+      ..lineTo(pos.left + halfWidth, pos.top - halfWidth + _halfSpace)
       ..lineTo(pos.left + segmentSize.width, pos.top + _halfSpace)
-      ..lineTo(pos.left + segmentSize.width,
-          pos.top + segmentSize.height - _halfSpace)
+      ..lineTo(
+        pos.left + segmentSize.width,
+        pos.top + segmentSize.height - _halfSpace,
+      )
+      ..lineTo(pos.left, pos.top + segmentSize.height - _halfSpace)
+      ..close();
+  }
+
+  //
+  // 16-segment overrides
+  //
+
+  @override
+  Path createPath16A1(Size segmentSize, double padding) {
+    final pos = SegmentPosition.sixteenA1(segmentSize, padding);
+    final halfHeight = (segmentSize.height / 2.0) - (segmentSize.width / 2.0);
+
+    return Path()
+      ..moveTo(pos.left - segmentSize.width + _halfSpace, pos.top)
+      ..lineTo(
+        pos.left + halfHeight + segmentSize.width / 2.0 - _halfSpace,
+        pos.top,
+      )
+      ..lineTo(pos.left + halfHeight - _halfSpace, pos.top + segmentSize.width)
+      ..lineTo(pos.left + _halfSpace, pos.top + segmentSize.width)
+      ..close();
+  }
+
+  @override
+  Path createPath16A2(Size segmentSize, double padding) {
+    final pos = SegmentPosition.sixteenA2(segmentSize, padding);
+    final halfHeight = (segmentSize.height / 2.0) - (segmentSize.width / 2.0);
+
+    return Path()
+      ..moveTo(pos.left - segmentSize.width / 2.0 + _halfSpace, pos.top)
+      ..lineTo(pos.left + halfHeight + segmentSize.width - _halfSpace, pos.top)
+      ..lineTo(pos.left + halfHeight - _halfSpace, pos.top + segmentSize.width)
+      ..lineTo(pos.left + _halfSpace, pos.top + segmentSize.width)
+      ..close();
+  }
+
+  @override
+  Path createPath16D1(Size segmentSize, double padding) {
+    final pos = SegmentPosition.sixteenD1(segmentSize, padding);
+    final halfHeight = (segmentSize.height / 2.0) - (segmentSize.width / 2.0);
+
+    return Path()
+      ..moveTo(pos.left + _halfSpace, pos.top)
+      ..lineTo(pos.left + halfHeight - _halfSpace, pos.top)
+      ..lineTo(
+        pos.left + halfHeight + segmentSize.width - _halfSpace,
+        pos.top + segmentSize.width,
+      )
+      ..lineTo(
+        pos.left - segmentSize.width / 2.0 + _halfSpace,
+        pos.top + segmentSize.width,
+      )
+      ..close();
+  }
+
+  @override
+  Path createPath16D2(Size segmentSize, double padding) {
+    final pos = SegmentPosition.sixteenD2(segmentSize, padding);
+    final halfHeight = (segmentSize.height / 2.0) - (segmentSize.width / 2.0);
+
+    return Path()
+      ..moveTo(pos.left + _halfSpace, pos.top)
+      ..lineTo(pos.left + halfHeight - _halfSpace, pos.top)
+      ..lineTo(
+        pos.left + halfHeight + segmentSize.width / 2.0 - _halfSpace,
+        pos.top + segmentSize.width,
+      )
+      ..lineTo(
+        pos.left - segmentSize.width + _halfSpace,
+        pos.top + segmentSize.width,
+      )
+      ..close();
+  }
+
+  @override
+  Path createPath16I(Size segmentSize, double padding) {
+    final pos = SegmentPosition.sixteenI(segmentSize, padding);
+    final halfWidth = segmentSize.width / 2.0;
+
+    return Path()
+      ..moveTo(pos.left, pos.top + _halfSpace)
+      ..lineTo(pos.left + halfWidth, pos.top - segmentSize.width + _halfSpace)
+      ..lineTo(pos.left + segmentSize.width, pos.top + _halfSpace)
+      ..lineTo(
+        pos.left + segmentSize.width,
+        pos.top + segmentSize.height - _halfSpace,
+      )
+      ..lineTo(
+        pos.left + halfWidth,
+        pos.top + segmentSize.height + halfWidth - _halfSpace,
+      )
+      ..lineTo(pos.left, pos.top + segmentSize.height - _halfSpace)
+      ..close();
+  }
+
+  @override
+  Path createPath16L(Size segmentSize, double padding) {
+    final pos = SegmentPosition.sixteenL(segmentSize, padding);
+    final halfWidth = segmentSize.width / 2.0;
+
+    return Path()
+      ..moveTo(pos.left, pos.top + _halfSpace)
+      ..lineTo(pos.left + halfWidth, pos.top - halfWidth + _halfSpace)
+      ..lineTo(pos.left + segmentSize.width, pos.top + _halfSpace)
+      ..lineTo(
+        pos.left + segmentSize.width,
+        pos.top + segmentSize.height - _halfSpace,
+      )
+      ..lineTo(
+        pos.left + halfWidth,
+        pos.top + segmentSize.height + segmentSize.width - _halfSpace,
+      )
       ..lineTo(pos.left, pos.top + segmentSize.height - _halfSpace)
       ..close();
   }

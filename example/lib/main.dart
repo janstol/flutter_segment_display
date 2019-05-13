@@ -51,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: SevenSegmentDisplay(
+              child: SixteenSegmentDisplay(
                 text: "$_counter",
                 textSize: 12.0,
                 backgroundColor: Colors.transparent,

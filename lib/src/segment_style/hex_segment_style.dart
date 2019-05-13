@@ -67,26 +67,33 @@ class HexSegmentStyle extends SegmentStyle {
 
   @override
   Path createDiagonalBackwardPath(SegmentPosition position, Size segmentSize) {
-    final w = 1.8 * segmentSize.width;
+    final w1 = 1.5 * segmentSize.width;
+    final w2 = segmentSize.width / 3.0;
     final halfHeight = (segmentSize.height / 2.0) - (segmentSize.width / 2.0);
 
     return Path()
       ..moveTo(position.left + _halfSpace, position.top + _halfSpace)
+      ..lineTo(position.left + w2 + _halfSpace, position.top + _halfSpace)
       ..lineTo(
         position.left + halfHeight - _halfSpace,
-        position.top + segmentSize.height - w,
+        position.top + segmentSize.height - w1 - _halfSpace,
       )
       ..lineTo(
         position.left + halfHeight - _halfSpace,
-        position.top + segmentSize.height,
+        position.top + segmentSize.height - _halfSpace,
       )
-      ..lineTo(position.left + _halfSpace, position.top + w + _halfSpace)
+      ..lineTo(
+        position.left + halfHeight - w2 - _halfSpace,
+        position.top + segmentSize.height - _halfSpace,
+      )
+      ..lineTo(position.left + _halfSpace, position.top + w1 + _halfSpace)
       ..close();
   }
 
   @override
   Path createDiagonalForwardPath(SegmentPosition position, Size segmentSize) {
-    final w = 1.8 * segmentSize.width;
+    final w1 = 1.5 * segmentSize.width;
+    final w2 = segmentSize.width / 3.0;
     final halfHeight = (segmentSize.height / 2.0) - (segmentSize.width / 2.0);
 
     return Path()
@@ -96,7 +103,11 @@ class HexSegmentStyle extends SegmentStyle {
       )
       ..lineTo(
         position.left + halfHeight - _halfSpace,
-        position.top + w + _halfSpace,
+        position.top + w1 + _halfSpace,
+      )
+      ..lineTo(
+        position.left + w2 + _halfSpace,
+        position.top + segmentSize.height - _halfSpace,
       )
       ..lineTo(
         position.left + _halfSpace,
@@ -104,14 +115,18 @@ class HexSegmentStyle extends SegmentStyle {
       )
       ..lineTo(
         position.left + _halfSpace,
-        position.top + segmentSize.height - w - _halfSpace,
+        position.top + segmentSize.height - w1 - _halfSpace,
+      )
+      ..lineTo(
+        position.left + halfHeight - w2 - _halfSpace,
+        position.top + _halfSpace,
       )
       ..close();
   }
 
-  ///
-  /// 14-segment overrides
-  ///
+  //
+  // 14-segment overrides
+  //
 
   @override
   Path createPath14I(Size segmentSize, double padding) {
@@ -145,6 +160,52 @@ class HexSegmentStyle extends SegmentStyle {
       ..lineTo(
         pos.left + segmentSize.width,
         pos.top + segmentSize.height - _halfSpace,
+      )
+      ..lineTo(pos.left, pos.top + segmentSize.height - _halfSpace)
+      ..close();
+  }
+
+  //
+  // 16-segment overrides
+  //
+
+  @override
+  Path createPath16I(Size segmentSize, double padding) {
+    final pos = SegmentPosition.sixteenI(segmentSize, padding);
+    final halfWidth = segmentSize.width / 2.0;
+
+    return Path()
+      ..moveTo(pos.left, pos.top + _halfSpace)
+      ..lineTo(pos.left + halfWidth, pos.top - halfWidth + _halfSpace)
+      ..lineTo(pos.left + segmentSize.width, pos.top + _halfSpace)
+      ..lineTo(
+        pos.left + segmentSize.width,
+        pos.top + segmentSize.height - _halfSpace,
+      )
+      ..lineTo(
+        pos.left + halfWidth,
+        pos.top + segmentSize.height + halfWidth - _halfSpace,
+      )
+      ..lineTo(pos.left, pos.top + segmentSize.height - _halfSpace)
+      ..close();
+  }
+
+  @override
+  Path createPath16L(Size segmentSize, double padding) {
+    final pos = SegmentPosition.sixteenL(segmentSize, padding);
+    final halfWidth = segmentSize.width / 2.0;
+
+    return Path()
+      ..moveTo(pos.left, pos.top + _halfSpace)
+      ..lineTo(pos.left + halfWidth, pos.top - halfWidth + _halfSpace)
+      ..lineTo(pos.left + segmentSize.width, pos.top + _halfSpace)
+      ..lineTo(
+        pos.left + segmentSize.width,
+        pos.top + segmentSize.height - _halfSpace,
+      )
+      ..lineTo(
+        pos.left + halfWidth,
+        pos.top + segmentSize.height + halfWidth - _halfSpace,
       )
       ..lineTo(pos.left, pos.top + segmentSize.height - _halfSpace)
       ..close();

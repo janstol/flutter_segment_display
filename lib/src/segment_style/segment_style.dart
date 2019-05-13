@@ -41,7 +41,6 @@ abstract class SegmentStyle {
         this.enabledColor = enabledColor ?? const Color(0xffff0000),
         this.disabledColor = disabledColor ?? const Color(0x2fff0000);
 
-
   // Base methods for creating path for segments
   //
   // You can customize each segment path separately by overriding createPath*
@@ -154,7 +153,7 @@ abstract class SegmentStyle {
     return createDiagonalBackwardPath(pos, segmentSize);
   }
 
-  /// Creates path for top center segment in 14-segment display
+  /// Creates path for top center vertical segment in 14-segment display
   Path createPath14I(Size segmentSize, double padding) {
     final pos = SegmentPosition.fourteenI(segmentSize, padding);
     return createVerticalPath(pos, segmentSize);
@@ -172,7 +171,7 @@ abstract class SegmentStyle {
     return createDiagonalForwardPath(pos, segmentSize);
   }
 
-  /// Creates path for bottom center segment in 14-segment display
+  /// Creates path for bottom center vertical segment in 14-segment display
   Path createPath14L(Size segmentSize, double padding) {
     final pos = SegmentPosition.fourteenL(segmentSize, padding);
     return createVerticalPath(pos, segmentSize);
@@ -183,4 +182,84 @@ abstract class SegmentStyle {
     final pos = SegmentPosition.fourteenM(segmentSize, padding);
     return createDiagonalBackwardPath(pos, segmentSize);
   }
+
+  //
+  // 16-segment
+  //
+
+  /// Creates path for top right horizontal segment in 16-segment display
+  Path createPath16A1(Size segmentSize, double padding) {
+    final pos = SegmentPosition.sixteenA1(segmentSize, padding);
+    final halfHeight = (segmentSize.height / 2.0) - (segmentSize.width / 2.0);
+    return createHorizontalPath(pos, Size(segmentSize.width, halfHeight));
+  }
+
+  /// Creates path for top left horizontal segment in 16-segment display
+  Path createPath16A2(Size segmentSize, double padding) {
+    final pos = SegmentPosition.sixteenA2(segmentSize, padding);
+    final halfHeight = (segmentSize.height / 2.0) - (segmentSize.width / 2.0);
+    return createHorizontalPath(pos, Size(segmentSize.width, halfHeight));
+  }
+
+  /// Creates path for top right vertical segment in 16-segment display
+  Path createPath16B(Size segmentSize, double padding) =>
+      createPath7B(segmentSize, padding);
+
+  /// Creates path for bottom right vertical segment in 14-segment display
+  Path createPath16C(Size segmentSize, double padding) =>
+      createPath7C(segmentSize, padding);
+
+  /// Creates path for bottom right horizontal segment in 16-segment display
+  Path createPath16D1(Size segmentSize, double padding) {
+    final pos = SegmentPosition.sixteenD1(segmentSize, padding);
+    final halfHeight = (segmentSize.height / 2.0) - (segmentSize.width / 2.0);
+    return createHorizontalPath(pos, Size(segmentSize.width, halfHeight));
+  }
+
+  /// Creates path for bottom left horizontal segment in 16-segment display
+  Path createPath16D2(Size segmentSize, double padding) {
+    final pos = SegmentPosition.sixteenD2(segmentSize, padding);
+    final halfHeight = (segmentSize.height / 2.0) - (segmentSize.width / 2.0);
+    return createHorizontalPath(pos, Size(segmentSize.width, halfHeight));
+  }
+
+  /// Creates path for bottom left vertical segment in 16-segment display
+  Path createPath16E(Size segmentSize, double padding) =>
+      createPath7E(segmentSize, padding);
+
+  /// Creates path for top left vertical segment in 16-segment display
+  Path createPath16F(Size segmentSize, double padding) =>
+      createPath7F(segmentSize, padding);
+
+  /// Creates path for middle left segment in 16-segment display
+  Path createPath16G1(Size segmentSize, double padding) =>
+      createPath14G1(segmentSize, padding);
+
+  /// Creates path for middle right segment in 16-segment display
+  Path createPath16G2(Size segmentSize, double padding) =>
+      createPath14G2(segmentSize, padding);
+
+  /// Creates path for top left diagonal segment in 16-segment display
+  Path createPath16H(Size segmentSize, double padding) =>
+      createPath14H(segmentSize, padding);
+
+  /// Creates path for top center vertical segment in 16-segment display
+  Path createPath16I(Size segmentSize, double padding) =>
+      createPath14I(segmentSize, padding);
+
+  /// Creates path for top right diagonal segment in 16-segment display
+  Path createPath16J(Size segmentSize, double padding) =>
+      createPath14J(segmentSize, padding);
+
+  /// Creates path for bottom left diagonal segment in 16-segment display
+  Path createPath16K(Size segmentSize, double padding) =>
+      createPath14K(segmentSize, padding);
+
+  /// Creates path for bottom center segment in 16-segment display
+  Path createPath16L(Size segmentSize, double padding) =>
+      createPath14L(segmentSize, padding);
+
+  /// Creates path for bottom right diagonal segment in 16-segment display
+  Path createPath16M(Size segmentSize, double padding) =>
+      createPath14M(segmentSize, padding);
 }

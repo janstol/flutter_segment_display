@@ -6,7 +6,7 @@ import 'package:segment_display/src/segment_style/segment_style.dart';
 
 /// 7-segment display stateless widget.
 ///
-/// [Wikipedia: Seven-segment display](https://en.wikipedia.org/wiki/Seven-segment_display)
+/// * [Wikipedia: Seven-segment display](https://en.wikipedia.org/wiki/Seven-segment_display)
 class SevenSegmentDisplay extends SegmentDisplay {
   /// Creates a 7-segment display.
   ///

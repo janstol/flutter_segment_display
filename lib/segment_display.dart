@@ -7,8 +7,9 @@ export 'package:segment_display/src/character_segment_map.dart';
 
 // displays
 export 'package:segment_display/src/display/segment_display.dart';
-export 'package:segment_display/src/display/fourteen_segment_display.dart';
 export 'package:segment_display/src/display/seven_segment_display.dart';
+export 'package:segment_display/src/display/fourteen_segment_display.dart';
+export 'package:segment_display/src/display/sixteen_segment_display.dart';
 
 //segment styles
 export 'package:segment_display/src/segment_style/segment_style.dart';

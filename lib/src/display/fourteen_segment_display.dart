@@ -6,7 +6,7 @@ import 'package:segment_display/src/segment_style/segment_style.dart';
 
 /// 14-segment display stateless widget.
 ///
-/// [Wikipedia: Fourteen-segment display](https://en.wikipedia.org/wiki/Fourteen-segment_display)
+/// * [Wikipedia: Fourteen-segment display](https://en.wikipedia.org/wiki/Fourteen-segment_display)
 class FourteenSegmentDisplay extends SegmentDisplay {
   /// Creates a 14-segment display.
   ///
