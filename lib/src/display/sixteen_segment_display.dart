@@ -20,15 +20,15 @@ class SixteenSegmentDisplay extends SegmentDisplay {
     double characterSpacing,
     Color backgroundColor,
   }) : super(
-    key: key,
-    text: text,
-    textSize: textSize,
-    segmentStyle: segmentStyle,
-    characterCount: characterCount,
-    characterSpacing: characterSpacing,
-    backgroundColor: backgroundColor,
-    characterMap: CharacterSegmentMap.sixteen,
-  );
+          key: key,
+          text: text,
+          textSize: textSize,
+          segmentStyle: segmentStyle,
+          characterCount: characterCount,
+          characterSpacing: characterSpacing,
+          backgroundColor: backgroundColor,
+          characterMap: CharacterSegmentMap.sixteen,
+        );
 
   @override
   List<Segment> createSingleCharacter(int charIndex) {
@@ -55,4 +55,3 @@ class SixteenSegmentDisplay extends SegmentDisplay {
     ];
   }
 }
-

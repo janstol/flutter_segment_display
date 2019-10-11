@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:segment_display/src/character_segment_map.dart';
 import 'package:segment_display/src/segment_style/default_segment_style.dart';
@@ -10,8 +11,8 @@ import 'package:segment_display/src/segment_display_painter.dart';
 
 /// This class represents general segment display.
 ///
-/// To create concrete segment display, extend [SegmentDisplay] class and implement
-/// [createSingleCharacter] method.
+/// To create concrete segment display, extend [SegmentDisplay] class
+/// and implement [createSingleCharacter] method.
 abstract class SegmentDisplay extends StatelessWidget {
   /// Characters to be displayed on display.
   final String text;
@@ -31,12 +32,14 @@ abstract class SegmentDisplay extends StatelessWidget {
   /// The [text] length will be used when no count is provided.
   ///
   /// If [characterCount] > [text.length] then text will be left padded.
-  /// This also means if [characterCount] < [text.lenght] then only last X characters
-  /// will be displayed (based on [characterCount]).
+  /// This also means if [characterCount] < [text.lenght] then
+  /// only last X characters will be displayed (based on [characterCount]).
   ///
   /// For example:
-  ///  * [characterCount] is set to 3 and [text] value to "1" - this will be displayed like "__1" (left padded).
-  ///  * [characterCount] is set to 1 and [text] value to "123" - this will be displayed like "3" (only last character).
+  ///  * [characterCount] is set to 3 and [text] value to "1" -
+  ///     this will be displayed like "__1" (left padded).
+  ///  * [characterCount] is set to 1 and [text] value to "123" -
+  ///     this will be displayed like "3" (only last character).
   final int characterCount;
 
   /// Space between individual characters
@@ -79,17 +82,22 @@ abstract class SegmentDisplay extends StatelessWidget {
     final charCount = characterCount ?? text.length;
     final size = computeSize(charCount);
 
-    return Container(
-      color: backgroundColor,
-      child: SizedBox(
-        width: size.width,
-        height: size.height,
-        child: CustomPaint(
-          size: size,
-          painter: SegmentDisplayPainter(
-            segments: createDisplaySegments(charCount, size),
-            enabledColor: segmentStyle.enabledColor,
-            disabledColor: segmentStyle.disabledColor,
+    return Semantics(
+      label: "Segment display",
+      value: text,
+      textDirection: TextDirection.ltr,
+      child: Container(
+        color: backgroundColor,
+        child: SizedBox(
+          width: size.width,
+          height: size.height,
+          child: CustomPaint(
+            size: size,
+            painter: SegmentDisplayPainter(
+              segments: createDisplaySegments(charCount, size),
+              enabledColor: segmentStyle.enabledColor,
+              disabledColor: segmentStyle.disabledColor,
+            ),
           ),
         ),
       ),

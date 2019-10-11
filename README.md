@@ -35,7 +35,7 @@ Supports multiple types of segment displays and segment customization.
 Add this to your package's pubspec.yaml file:
 ```yaml
 dependencies:
-  segment_display: ^0.2.0
+  segment_display: ^0.3.0
 ```
 2. **Install it**
 
