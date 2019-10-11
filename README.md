@@ -2,6 +2,7 @@
 ![Segment display](https://github.com/janstol/flutter_segment_display/raw/master/screenshot/segment_display.png)
 
 [![Pub](https://img.shields.io/pub/v/segment_display.svg?style=flat-square)](https://pub.dartlang.org/packages/segment_display)
+[![Build Status](https://travis-ci.com/janstol/flutter_segment_display.svg?branch=master)](https://travis-ci.com/janstol/flutter_segment_display)
 
 Segment display widget for [Flutter](https://flutter.dev). 
 Supports multiple types of segment displays and segment customization.
