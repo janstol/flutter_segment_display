@@ -52,6 +52,9 @@ import 'package:segment_display/segment_display.dart';
 ## Usage
 
 ### Seven-segment display
+[CHARACTERS](img/displays/seven_segment.png)
+
+**Example:**  
 ```dart
 SevenSegmentDisplay(
   value: "123",
@@ -59,10 +62,11 @@ SevenSegmentDisplay(
 )
 ``` 
 <img src="img/seven.png" height="100" alt="Seven-segment display" />
-<img src="img/displays/seven_segment.png" height="50" alt="Seven-segment display characters" />
-
 
 ### Fourteen-segment display
+[CHARACTERS](img/displays/fourteen_segment.png)
+
+**Example:**  
 ```dart
 FourteenSegmentDisplay(
   value: "123",
@@ -70,9 +74,11 @@ FourteenSegmentDisplay(
 )
 ```
 <img src="img/fourteen.png" height="100" alt="Fourteen-segment display" />
-<img src="img/displays/fourteen_segment.png" height="50" alt="Fourteen-segment display characters" />
 
 ### Sixteen-segment display
+[CHARACTERS](img/displays/sixteen-segment.png)
+
+**Example:**  
 ```dart
 SixteenSegmentDisplay(
   value: "123",
@@ -80,7 +86,6 @@ SixteenSegmentDisplay(
 )
 ```  
 <img src="img/sixteen.png" height="100" alt="Sixteen-segment display" />
-<img src="img/displays/sixteen_segment.png" height="50" alt="Sixteen-segment display characters" />
 
 ## Styles and customization
 You can customize segment display with:
@@ -88,7 +93,7 @@ You can customize segment display with:
 - `backgroundColor` - display background color
 - `segmentStyle` - style for segments (shape, color,...), see [segment style](#segment-style)
 
-Example:
+**Example:**
 ```dart
 SevenSegmentDisplay(
   text: "123",
@@ -115,7 +120,7 @@ To change segment color, size or shape, use segment style.
 
 and you can also **create or own style (shape)** - see [custom segment styles](#custom-segment-styles)
 
-Example:
+**Example:**
 ```dart
 SevenSegmentDisplay(
   value: "13:37",
@@ -127,11 +132,11 @@ SevenSegmentDisplay(
   ),
 )
 ```
-<img src="img/style.png" height="150" alt="Style example" />
+<img src="img/style.png" height="100" alt="Style example" />
 
 - `enabledColor` - color of enabled segments
 - `disabledColor` - color of disabled segments
-- `segmentBaseSize` - size ratio for segments; `Size(1.0, 4.0)` basically means that ratio will be 1:4 *(width:length)*
+- `segmentBaseSize` - size ratio for segments; `Size(1.0, 2.0)` basically means that ratio will be 1:2 *(width:length)*
 > NOTE: `SegmentStyle.segmentBaseSize` * `SegmentDisplay.textSize` = segmentSize
 
 
