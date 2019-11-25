@@ -13,16 +13,16 @@ class SixteenSegmentDisplay extends SegmentDisplay {
   /// see [SegmentDisplay] for more info about properties and methods.
   const SixteenSegmentDisplay({
     Key key,
-    @required String text,
-    @required SegmentStyle segmentStyle,
-    double textSize,
+    @required String value,
+    SegmentStyle segmentStyle,
+    double size,
     int characterCount,
     double characterSpacing,
     Color backgroundColor,
   }) : super(
           key: key,
-          text: text,
-          textSize: textSize,
+          value: value,
+          size: size,
           segmentStyle: segmentStyle,
           characterCount: characterCount,
           characterSpacing: characterSpacing,
@@ -31,27 +31,24 @@ class SixteenSegmentDisplay extends SegmentDisplay {
         );
 
   @override
-  List<Segment> createSingleCharacter(int charIndex) {
-    final padding = charIndex * (2 * segmentSize.width + segmentSize.height) +
-        (charIndex * characterSpacing);
-
+  List<Segment> createSingleCharacter(double indent) {
     return [
-      Segment.sixteenM(segmentStyle, segmentSize, padding),
-      Segment.sixteenL(segmentStyle, segmentSize, padding),
-      Segment.sixteenK(segmentStyle, segmentSize, padding),
-      Segment.sixteenJ(segmentStyle, segmentSize, padding),
-      Segment.sixteenI(segmentStyle, segmentSize, padding),
-      Segment.sixteenH(segmentStyle, segmentSize, padding),
-      Segment.sixteenG2(segmentStyle, segmentSize, padding),
-      Segment.sixteenG1(segmentStyle, segmentSize, padding),
-      Segment.sixteenF(segmentStyle, segmentSize, padding),
-      Segment.sixteenE(segmentStyle, segmentSize, padding),
-      Segment.sixteenD2(segmentStyle, segmentSize, padding),
-      Segment.sixteenD1(segmentStyle, segmentSize, padding),
-      Segment.sixteenC(segmentStyle, segmentSize, padding),
-      Segment.sixteenB(segmentStyle, segmentSize, padding),
-      Segment.sixteenA2(segmentStyle, segmentSize, padding),
-      Segment.sixteenA1(segmentStyle, segmentSize, padding),
+      Segment.sixteenM(segmentStyle, segmentSize, indent),
+      Segment.sixteenL(segmentStyle, segmentSize, indent),
+      Segment.sixteenK(segmentStyle, segmentSize, indent),
+      Segment.sixteenJ(segmentStyle, segmentSize, indent),
+      Segment.sixteenI(segmentStyle, segmentSize, indent),
+      Segment.sixteenH(segmentStyle, segmentSize, indent),
+      Segment.sixteenG2(segmentStyle, segmentSize, indent),
+      Segment.sixteenG1(segmentStyle, segmentSize, indent),
+      Segment.sixteenF(segmentStyle, segmentSize, indent),
+      Segment.sixteenE(segmentStyle, segmentSize, indent),
+      Segment.sixteenD2(segmentStyle, segmentSize, indent),
+      Segment.sixteenD1(segmentStyle, segmentSize, indent),
+      Segment.sixteenC(segmentStyle, segmentSize, indent),
+      Segment.sixteenB(segmentStyle, segmentSize, indent),
+      Segment.sixteenA2(segmentStyle, segmentSize, indent),
+      Segment.sixteenA1(segmentStyle, segmentSize, indent),
     ];
   }
 }

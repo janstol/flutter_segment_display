@@ -17,6 +17,20 @@ class Segment {
     this.isEnabled = false,
   });
 
+  /// Creates segment for decimal point (`.`).
+  Segment.decimalPoint(SegmentStyle style, Size segmentSize, double padding)
+      : this(
+          path: style.createDecimalPointPath(segmentSize, padding),
+          isEnabled: true,
+        );
+
+  /// Creates segment for colon (`:`).
+  Segment.colon(SegmentStyle style, Size segmentSize, double padding)
+      : this(
+          path: style.createColonPath(segmentSize, padding),
+          isEnabled: true,
+        );
+
   //
   // 7-segment
   //

@@ -2,9 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:segment_display/segment_display.dart';
 
-final _sevenSegmentDisplayMapping = CharacterSegmentMap.seven.keys.join();
-final _fourteenSegmentDisplayMapping = CharacterSegmentMap.fourteen.keys.join();
-final _sixteenSegmentDisplayMapping = CharacterSegmentMap.sixteen.keys.join();
+final _dividerCharacters = CharacterSegmentMap.dividerCharacters.values.join();
+
+final _sevenSegmentDisplayMapping =
+    CharacterSegmentMap.seven.keys.join() + _dividerCharacters;
+
+final _fourteenSegmentDisplayMapping =
+    CharacterSegmentMap.fourteen.keys.join() + _dividerCharacters;
+
+final _sixteenSegmentDisplayMapping =
+    CharacterSegmentMap.sixteen.keys.join() + _dividerCharacters;
 
 /// Creates test [SevenSegmentDisplay] for
 /// all characters supported by this display.
@@ -12,16 +19,25 @@ Widget createSevenSegmentDisplayTest(
     {SegmentStyle segmentStyle = const DefaultSegmentStyle()}) {
   return Center(
     child: RepaintBoundary(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          for (final v in _splitString(_sevenSegmentDisplayMapping, 10))
-            SevenSegmentDisplay(
-              text: v,
-              textSize: 5,
-              segmentStyle: segmentStyle,
-            ),
-        ],
+      child: Container(
+        color: const Color(0xFF000000),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            for (final v in _splitString(_sevenSegmentDisplayMapping, 11))
+              Column(
+                children: <Widget>[
+                  SevenSegmentDisplay(
+                    value: v,
+                    size: 6,
+                    characterSpacing: 5.0,
+                    segmentStyle: segmentStyle,
+                  ),
+                  const SizedBox(height: 4.0),
+                ],
+              )
+          ],
+        ),
       ),
     ),
   );
@@ -33,16 +49,25 @@ Widget createFourteenSegmentDisplayTest(
     {SegmentStyle segmentStyle = const DefaultSegmentStyle()}) {
   return Center(
     child: RepaintBoundary(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          for (final v in _splitString(_fourteenSegmentDisplayMapping, 10))
-            FourteenSegmentDisplay(
-              text: v,
-              textSize: 5,
-              segmentStyle: segmentStyle,
-            ),
-        ],
+      child: Container(
+        color: const Color(0xFF000000),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            for (final v in _splitString(_fourteenSegmentDisplayMapping, 12))
+              Column(
+                children: <Widget>[
+                  FourteenSegmentDisplay(
+                    value: v,
+                    size: 6,
+                    characterSpacing: 5.0,
+                    segmentStyle: segmentStyle,
+                  ),
+                  const SizedBox(height: 4.0),
+                ],
+              ),
+          ],
+        ),
       ),
     ),
   );
@@ -54,16 +79,25 @@ Widget createSixteenSegmentDisplayTest(
     {SegmentStyle segmentStyle = const DefaultSegmentStyle()}) {
   return Center(
     child: RepaintBoundary(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          for (final v in _splitString(_sixteenSegmentDisplayMapping, 10))
-            SixteenSegmentDisplay(
-              text: v,
-              textSize: 5,
-              segmentStyle: segmentStyle,
-            ),
-        ],
+      child: Container(
+        color: const Color(0xFF000000),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            for (final v in _splitString(_sixteenSegmentDisplayMapping, 12))
+              Column(
+                children: <Widget>[
+                  SixteenSegmentDisplay(
+                    value: v,
+                    size: 6,
+                    characterSpacing: 5.0,
+                    segmentStyle: segmentStyle,
+                  ),
+                  const SizedBox(height: 4.0),
+                ],
+              ),
+          ],
+        ),
       ),
     ),
   );

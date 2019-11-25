@@ -23,27 +23,27 @@ class RectSegmentStyle extends SegmentStyle {
   @override
   Path createHorizontalPath(SegmentPosition position, Size segmentSize) {
     return Path()
-      ..moveTo(position.left, position.top)
-      ..lineTo(position.left + segmentSize.height, position.top)
-      ..lineTo(
-        position.left + segmentSize.height,
-        position.top + segmentSize.width,
-      )
-      ..lineTo(position.left, position.top + segmentSize.width)
-      ..close();
+      ..addRect(
+        Rect.fromLTWH(
+          position.left,
+          position.top,
+          segmentSize.height,
+          segmentSize.width,
+        ),
+      );
   }
 
   @override
   Path createVerticalPath(SegmentPosition position, Size segmentSize) {
     return Path()
-      ..moveTo(position.left, position.top)
-      ..lineTo(position.left + segmentSize.width, position.top)
-      ..lineTo(
-        position.left + segmentSize.width,
-        position.top + segmentSize.height,
-      )
-      ..lineTo(position.left, position.top + segmentSize.height)
-      ..close();
+      ..addRect(
+        Rect.fromLTWH(
+          position.left,
+          position.top,
+          segmentSize.width,
+          segmentSize.height,
+        ),
+      );
   }
 
   @override

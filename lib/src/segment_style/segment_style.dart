@@ -24,10 +24,10 @@ abstract class SegmentStyle {
   /// * [Size.width] represents 'thickness' of segment
   /// * [Size.height] represents 'length' of segment
   ///
-  /// Example: Size(1.0, 4.0) basically means that ratio will be 1:4 *(width:length)* that segment will be 1 unit wide/thick and 4 units long.
+  /// Example: Size(1.0, 4.0) basically means that ratio will be 1:4 *(width:length)* (segment will be 1 unit wide/thick and 4 units long).
   ///
   /// NOTE:
-  /// [SegmentStyle.segmentBaseSize] * [SegmentDisplay.textSize] = segmentSize
+  /// [SegmentStyle.segmentBaseSize] * [SegmentDisplay.size] = segmentSize
   final Size segmentBaseSize;
 
   /// [Color] of every enabled segment.
@@ -60,6 +60,33 @@ abstract class SegmentStyle {
 
   /// Creates path for diagonal 'backward' (`\`) segments.
   Path createDiagonalBackwardPath(SegmentPosition position, Size segmentSize);
+
+  /// Creates path for decimal point (`.`) segment.
+  Path createDecimalPointPath(Size segmentSize, double padding) {
+    final pos = SegmentPosition.decimalPoint(segmentSize, padding);
+    final decimalPoint = Rect.fromLTWH(
+      pos.left,
+      pos.top,
+      segmentSize.width,
+      segmentSize.width,
+    );
+
+    return Path()..addRect(decimalPoint);
+  }
+
+  /// Creates path for colon (`:`) segment.
+  Path createColonPath(Size segmentSize, double padding) {
+    final pos = SegmentPosition.colon(segmentSize, padding);
+    final topHalf = Rect.fromLTWH(
+      pos.left,
+      pos.top,
+      segmentSize.width,
+      segmentSize.width,
+    );
+    final bottomHalf = topHalf.translate(0, 2 * pos.top);
+
+    return Path()..addRect(topHalf)..addRect(bottomHalf);
+  }
 
   //
   // 7-Segment

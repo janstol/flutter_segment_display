@@ -5,8 +5,15 @@
 /// `0` DEC = `0x7E` HEX = `1111110` BIN
 /// which means that every segment except the middle one is enabled
 class CharacterSegmentMap {
+  /// Special (dividers) characters.
+  static const dividerCharacters = <String, String>{
+    "decimalPoint": ".",
+    "colon": ":",
+  };
+
   /// Characters that can be displayed on 7-segment display.
   static const seven = <String, int>{
+    " ": 0x00,
     "0": 0x7E,
     "1": 0x30,
     "2": 0x6D,
@@ -44,6 +51,7 @@ class CharacterSegmentMap {
 
   /// Characters that can be displayed on 14-segment display.
   static const fourteen = <String, int>{
+    ' ': 0x0000,
     '0': 0x3F0C,
     '1': 0x1808,
     '2': 0x36C0,
@@ -136,12 +144,13 @@ class CharacterSegmentMap {
     '\'': 0x0010,
     ',': 0x0004,
     //'.': 0x0001,
-    ':': 0x0012,
+    //':': 0x0012,
     ';': 0x0014,
   };
 
   /// Characters that can be displayed on 16-segment display.
   static const sixteen = <String, int>{
+    ' ': 0x0000,
     '0': 0xFF0C,
     '1': 0x3008,
     '2': 0xEEC0,
@@ -234,7 +243,7 @@ class CharacterSegmentMap {
     '\'': 0x0010,
     ',': 0x0004,
     //'.': 0x0001,
-    ':': 0x0012,
+    //':': 0x0012,
     ';': 0x0014,
   };
 }

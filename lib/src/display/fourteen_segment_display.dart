@@ -13,16 +13,16 @@ class FourteenSegmentDisplay extends SegmentDisplay {
   /// see [SegmentDisplay] for more info about properties and methods.
   const FourteenSegmentDisplay({
     Key key,
-    @required String text,
-    @required SegmentStyle segmentStyle,
-    double textSize,
+    @required String value,
+    SegmentStyle segmentStyle,
+    double size,
     int characterCount,
     double characterSpacing,
     Color backgroundColor,
   }) : super(
           key: key,
-          text: text,
-          textSize: textSize,
+          value: value,
+          size: size,
           segmentStyle: segmentStyle,
           characterCount: characterCount,
           characterSpacing: characterSpacing,
@@ -31,25 +31,22 @@ class FourteenSegmentDisplay extends SegmentDisplay {
         );
 
   @override
-  List<Segment> createSingleCharacter(int charIndex) {
-    final padding = charIndex * (2 * segmentSize.width + segmentSize.height) +
-        (charIndex * characterSpacing);
-
+  List<Segment> createSingleCharacter(double indent) {
     return [
-      Segment.fourteenM(segmentStyle, segmentSize, padding),
-      Segment.fourteenL(segmentStyle, segmentSize, padding),
-      Segment.fourteenK(segmentStyle, segmentSize, padding),
-      Segment.fourteenJ(segmentStyle, segmentSize, padding),
-      Segment.fourteenI(segmentStyle, segmentSize, padding),
-      Segment.fourteenH(segmentStyle, segmentSize, padding),
-      Segment.fourteenG2(segmentStyle, segmentSize, padding),
-      Segment.fourteenG1(segmentStyle, segmentSize, padding),
-      Segment.fourteenF(segmentStyle, segmentSize, padding),
-      Segment.fourteenE(segmentStyle, segmentSize, padding),
-      Segment.fourteenD(segmentStyle, segmentSize, padding),
-      Segment.fourteenC(segmentStyle, segmentSize, padding),
-      Segment.fourteenB(segmentStyle, segmentSize, padding),
-      Segment.fourteenA(segmentStyle, segmentSize, padding),
+      Segment.fourteenM(segmentStyle, segmentSize, indent),
+      Segment.fourteenL(segmentStyle, segmentSize, indent),
+      Segment.fourteenK(segmentStyle, segmentSize, indent),
+      Segment.fourteenJ(segmentStyle, segmentSize, indent),
+      Segment.fourteenI(segmentStyle, segmentSize, indent),
+      Segment.fourteenH(segmentStyle, segmentSize, indent),
+      Segment.fourteenG2(segmentStyle, segmentSize, indent),
+      Segment.fourteenG1(segmentStyle, segmentSize, indent),
+      Segment.fourteenF(segmentStyle, segmentSize, indent),
+      Segment.fourteenE(segmentStyle, segmentSize, indent),
+      Segment.fourteenD(segmentStyle, segmentSize, indent),
+      Segment.fourteenC(segmentStyle, segmentSize, indent),
+      Segment.fourteenB(segmentStyle, segmentSize, indent),
+      Segment.fourteenA(segmentStyle, segmentSize, indent),
     ];
   }
 }

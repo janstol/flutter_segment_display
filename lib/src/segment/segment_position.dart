@@ -11,6 +11,14 @@ class SegmentPosition {
   /// Creates [SegmentPosition] with [left] and [top] offset.
   const SegmentPosition(this.left, this.top);
 
+  /// Creates [SegmentPosition] for decimal point segment.
+  SegmentPosition.decimalPoint(Size size, double padding)
+      : this(padding, 2 * size.width + 2 * size.height);
+
+  /// Creates [SegmentPosition] for colon segment.
+  SegmentPosition.colon(Size size, double padding)
+      : this(padding, size.height / 2 + size.width / 2);
+
   //////////////////////////////////////////////////////////////////////////////
   // 7-segment
   //////////////////////////////////////////////////////////////////////////////

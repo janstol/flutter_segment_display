@@ -1,5 +1,5 @@
 # Segment display widget
-![Segment display](https://github.com/janstol/flutter_segment_display/raw/master/screenshot/segment_display.png)
+![Segment display](img/segment_display.png)
 
 [![Pub](https://img.shields.io/pub/v/segment_display.svg?style=flat-square)](https://pub.dartlang.org/packages/segment_display)
 [![Build Status](https://travis-ci.com/janstol/flutter_segment_display.svg?branch=master)](https://travis-ci.com/janstol/flutter_segment_display)
@@ -20,15 +20,11 @@ Supports multiple types of segment displays and segment customization.
 * [Features and bugs](#features-and-bugs)
 
 ## Features
-- 7-segment display
-- 14-segment display
-- 16-segment display
-- Customizable segment shapes (segment styles)
-
-**Planned**
-- Support for decimal point (`.`)
-- Support for colons (`:`)
-
+* 7-segment display
+* 14-segment display
+* 16-segment display
+* Customizable segment shapes (segment styles)
+* Supports `.` (decimal point) and `:` (colon) characters
 
 ## [Installation](https://pub.dev/packages/segment_display#-installing-tab-)
 1. **Depend on it**
@@ -36,7 +32,7 @@ Supports multiple types of segment displays and segment customization.
 Add this to your package's pubspec.yaml file:
 ```yaml
 dependencies:
-  segment_display: ^0.3.0
+  segment_display: ^0.4.0
 ```
 2. **Install it**
 
@@ -58,26 +54,33 @@ import 'package:segment_display/segment_display.dart';
 ### Seven-segment display
 ```dart
 SevenSegmentDisplay(
-  text: "123",
-  textSize: 12.0,
-);
-```
+  value: "123",
+  size: 12.0,
+)
+``` 
+<img src="img/seven.png" height="100" alt="Seven-segment display" />
+<img src="img/displays/seven_segment.png" height="50" alt="Seven-segment display characters" />
+
 
 ### Fourteen-segment display
 ```dart
 FourteenSegmentDisplay(
-  text: "123",
-  textSize: 12.0,
-);
+  value: "123",
+  size: 12.0,
+)
 ```
+<img src="img/fourteen.png" height="100" alt="Fourteen-segment display" />
+<img src="img/displays/fourteen_segment.png" height="50" alt="Fourteen-segment display characters" />
 
 ### Sixteen-segment display
 ```dart
 SixteenSegmentDisplay(
-  text: "123",
-  textSize: 12.0,
-);
-```
+  value: "123",
+  size: 12.0,
+)
+```  
+<img src="img/sixteen.png" height="100" alt="Sixteen-segment display" />
+<img src="img/displays/sixteen_segment.png" height="50" alt="Sixteen-segment display characters" />
 
 ## Styles and customization
 You can customize segment display with:
@@ -96,31 +99,36 @@ SevenSegmentDisplay(
     enabledColor: Colors.red,
     disabledColor: Colors.red.withOpacity(0.15),
   ),
-);
+)
 ```
 
 ### Segment style
 To change segment color, size or shape, use segment style.
 
 **There are following segment styles:**
-- DefaultSegmentStyle
-- HexSegmentStyle
-- RectSegmentStyle
+- DefaultSegmentStyle  
+![DefaultSegmentStyle](img/styles/style_default.png)
+- HexSegmentStyle  
+![HexSegmentStyle](img/styles/style_hex.png)
+- RectSegmentStyle  
+![RectSegmentStyle](img/styles/style_rect.png)
 
 and you can also **create or own style (shape)** - see [custom segment styles](#custom-segment-styles)
 
 Example:
 ```dart
 SevenSegmentDisplay(
-  text: "123",
-  textSize: 12.0,
+  value: "13:37",
+  size: 12.0,
   segmentStyle: HexSegmentStyle(
-    enabledColor: Colors.red,
-    disabledColor: Colors.red.withOpacity(0.15),
-    segmentBaseSize: const Size(1.0, 4.0),
+    enabledColor: const Color(0xFF00FF00),
+    disabledColor: const Color(0xFF00FF00).withOpacity(0.15),
+    segmentBaseSize: const Size(1.0, 2.0),
   ),
-);
+)
 ```
+<img src="img/style.png" height="150" alt="Style example" />
+
 - `enabledColor` - color of enabled segments
 - `disabledColor` - color of disabled segments
 - `segmentBaseSize` - size ratio for segments; `Size(1.0, 4.0)` basically means that ratio will be 1:4 *(width:length)*
@@ -135,7 +143,7 @@ To create your own segment style (shape), extends `SegmentStyle` class and imple
 ```dart
 class CustomSegmentStyle extends SegmentStyle {
 
-  const RectSegmentStyle({
+  const CustomSegmentStyle({
     Size segmentBaseSize,
     Color enabledColor,
     Color disabledColor,

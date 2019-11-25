@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
       //showSemanticsDebugger: true,
       title: 'Flutter Segment Display Example',
       theme: ThemeData(
-        accentColor: Colors.red,
+        accentColor: const Color(0xFFFF0000),
         brightness: Brightness.dark,
       ),
       home: const MyHomePage(title: 'Flutter Segment Display Example'),
@@ -29,12 +29,14 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter;
+  double _decimalCounter;
   SegmentStyle _segmentStyle;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     _counter = 0;
+    _decimalCounter = 0.0;
     _segmentStyle = DefaultSegmentStyle(
       enabledColor: Theme.of(context).accentColor,
       disabledColor: Theme.of(context).accentColor.withOpacity(0.15),
@@ -44,6 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _incrementCounter() {
     setState(() {
       _counter++;
+      _decimalCounter += 0.1;
     });
   }
 
@@ -98,33 +101,25 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: <Widget>[
-                  SevenSegmentDisplay(
-                    text: "$_counter",
-                    textSize: 12.0,
-                    backgroundColor: Colors.transparent,
-                    segmentStyle: _segmentStyle,
-                  ),
-                  const SizedBox(height: 10),
-                  FourteenSegmentDisplay(
-                    text: "$_counter",
-                    textSize: 12.0,
-                    backgroundColor: Colors.transparent,
-                    segmentStyle: _segmentStyle,
-                  ),
-                  const SizedBox(height: 10),
-                  SixteenSegmentDisplay(
-                    text: "$_counter",
-                    textSize: 12.0,
-                    backgroundColor: Colors.transparent,
-                    segmentStyle: _segmentStyle,
-                  ),
-                ],
-              ),
+            SevenSegmentDisplay(
+              value: _decimalCounter.toStringAsFixed(1),
+              size: 8.0,
+              backgroundColor: Colors.transparent,
+              segmentStyle: _segmentStyle,
+            ),
+            const SizedBox(height: 20),
+            FourteenSegmentDisplay(
+              value: "$_counter:$_counter",
+              size: 8.0,
+              backgroundColor: Colors.transparent,
+              segmentStyle: _segmentStyle,
+            ),
+            const SizedBox(height: 20),
+            SixteenSegmentDisplay(
+              value: "$_counter",
+              size: 8.0,
+              backgroundColor: Colors.transparent,
+              segmentStyle: _segmentStyle,
             ),
           ],
         ),

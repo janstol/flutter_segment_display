@@ -1,3 +1,8 @@
+## [0.4.0] - 2019-11-25
+* added support for `.` (decimal point) and `:` (colon) characters
+* **BREAKING CHANGE:** `SegmentDisplay.text` changed to `SegmentDisplay.value`
+* **BREAKING CHANGE:** `SegmentDisplay.textSize` changed to `SegmentDisplay.size`
+
 ## [0.3.0] - 2019-10-11
 * wrapped segment display with `Semantics` widget
 * updated example

@@ -13,16 +13,16 @@ class SevenSegmentDisplay extends SegmentDisplay {
   /// see [SegmentDisplay] for more info about properties and methods.
   const SevenSegmentDisplay({
     Key key,
-    @required String text,
-    @required SegmentStyle segmentStyle,
-    double textSize,
+    @required String value,
+    SegmentStyle segmentStyle,
+    double size,
     int characterCount,
     double characterSpacing,
     Color backgroundColor,
   }) : super(
           key: key,
-          text: text,
-          textSize: textSize,
+          value: value,
+          size: size,
           segmentStyle: segmentStyle,
           characterCount: characterCount,
           characterSpacing: characterSpacing,
@@ -31,18 +31,15 @@ class SevenSegmentDisplay extends SegmentDisplay {
         );
 
   @override
-  List<Segment> createSingleCharacter(int charIndex) {
-    final padding = charIndex * (2 * segmentSize.width + segmentSize.height) +
-        (charIndex * characterSpacing);
-
+  List<Segment> createSingleCharacter(double indent) {
     return [
-      Segment.sevenG(segmentStyle, segmentSize, padding),
-      Segment.sevenF(segmentStyle, segmentSize, padding),
-      Segment.sevenE(segmentStyle, segmentSize, padding),
-      Segment.sevenD(segmentStyle, segmentSize, padding),
-      Segment.sevenC(segmentStyle, segmentSize, padding),
-      Segment.sevenB(segmentStyle, segmentSize, padding),
-      Segment.sevenA(segmentStyle, segmentSize, padding),
+      Segment.sevenG(segmentStyle, segmentSize, indent),
+      Segment.sevenF(segmentStyle, segmentSize, indent),
+      Segment.sevenE(segmentStyle, segmentSize, indent),
+      Segment.sevenD(segmentStyle, segmentSize, indent),
+      Segment.sevenC(segmentStyle, segmentSize, indent),
+      Segment.sevenB(segmentStyle, segmentSize, indent),
+      Segment.sevenA(segmentStyle, segmentSize, indent),
     ];
   }
 }
