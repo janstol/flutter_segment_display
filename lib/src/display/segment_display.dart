@@ -82,7 +82,7 @@ abstract class SegmentDisplay extends StatelessWidget {
     final _displaySize = computeSize();
 
     return Semantics(
-      label: "Segment display",
+      label: 'Segment display',
       value: value,
       textDirection: TextDirection.ltr,
       child: Container(
@@ -115,7 +115,7 @@ abstract class SegmentDisplay extends StatelessWidget {
 
     // Add left padding when characterCount > text.length
     for (var i = value.length - charCount; i < value.length; i++) {
-      var char = "";
+      var char = '';
       if (i >= 0 && i < value.length) {
         char = value[i];
       }
@@ -154,8 +154,8 @@ abstract class SegmentDisplay extends StatelessWidget {
     final dividers = CharacterSegmentMap.dividerCharacters.values;
 
     final charCount = characterCount ??
-        value.split("").where((c) => !dividers.contains(c)).length;
-    final dividerCharCount = value.split("").where(dividers.contains).length;
+        value.split('').where((c) => !dividers.contains(c)).length;
+    final dividerCharCount = value.split('').where(dividers.contains).length;
 
     final charsWidth = charCount * (2 * segmentSize.width + segmentSize.height);
     final dividersWidth = dividerCharCount * segmentSize.width;
@@ -172,9 +172,9 @@ abstract class SegmentDisplay extends StatelessWidget {
 
   /// Creates special segment to display dividers like decimal point or colon.
   Segment createDividerCharacter(String character, double indent) {
-    if (character == CharacterSegmentMap.dividerCharacters["decimalPoint"]) {
+    if (character == CharacterSegmentMap.dividerCharacters['decimalPoint']) {
       return Segment.decimalPoint(segmentStyle, segmentSize, indent);
-    } else if (character == CharacterSegmentMap.dividerCharacters["colon"]) {
+    } else if (character == CharacterSegmentMap.dividerCharacters['colon']) {
       return Segment.colon(segmentStyle, segmentSize, indent);
     } else {
       return null;

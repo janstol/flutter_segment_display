@@ -3,6 +3,7 @@
 
 [![Pub](https://img.shields.io/pub/v/segment_display.svg?style=flat-square)](https://pub.dartlang.org/packages/segment_display)
 [![Build Status](https://travis-ci.com/janstol/flutter_segment_display.svg?branch=master)](https://travis-ci.com/janstol/flutter_segment_display)
+[![Demo](https://img.shields.io/badge/demo-WEB-blue)](https://janstol.github.io/flutter_segment_display/)
 
 Segment display widget for [Flutter](https://flutter.dev). 
 Supports multiple types of segment displays and segment customization.
@@ -26,13 +27,16 @@ Supports multiple types of segment displays and segment customization.
 * Customizable segment shapes (segment styles)
 * Supports `.` (decimal point) and `:` (colon) characters
 
+See [WEB DEMO](https://janstol.github.io/flutter_segment_display/).
+> NOTE: Flutter web support is currently in beta, so you may experience some issues.
+
 ## [Installation](https://pub.dev/packages/segment_display#-installing-tab-)
 1. **Depend on it**
 
 Add this to your package's pubspec.yaml file:
 ```yaml
 dependencies:
-  segment_display: ^0.4.0
+  segment_display: ^0.4.1
 ```
 2. **Install it**
 

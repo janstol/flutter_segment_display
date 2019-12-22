@@ -292,4 +292,6 @@ abstract class SegmentStyle {
   /// Creates path for bottom right diagonal segment in 16-segment display.
   Path createPath16M(Size segmentSize, double padding) =>
       createPath14M(segmentSize, padding);
+
+  SegmentStyle copyWith({Color enabledColor, Color disabledColor});
 }

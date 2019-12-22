@@ -1,12 +1,10 @@
 name: segment_display
 description: Segment display widget for Flutter. Supports multiple types of segment displays and segment customization.
-version: 0.4.0
-author: Jan Štol <honzastol@gmail.com>
+version: 0.4.1
 homepage: https://github.com/janstol/flutter_segment_display
-repository: https://github.com/janstol/flutter_segment_display
 
 environment:
-  sdk: ">=2.2.2 <3.0.0"
+  sdk: ">=2.6.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -15,5 +13,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  lint: ^1.1.0
 
 flutter:

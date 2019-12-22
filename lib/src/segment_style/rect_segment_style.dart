@@ -74,4 +74,18 @@ class RectSegmentStyle extends SegmentStyle {
       ..lineTo(position.left, position.top + segmentSize.height - w)
       ..close();
   }
+
+  @override
+  SegmentStyle copyWith({
+    Size segmentBaseSize,
+    Color enabledColor,
+    Color disabledColor,
+    double segmentSpacing,
+  }) {
+    return RectSegmentStyle(
+      enabledColor: enabledColor ?? this.enabledColor,
+      disabledColor: disabledColor ?? this.disabledColor,
+      segmentBaseSize: segmentBaseSize ?? this.segmentBaseSize,
+    );
+  }
 }

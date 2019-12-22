@@ -1,0 +1,33 @@
+name: Web demo deploy
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: subosito/flutter-action@v1.1.1
+      with:
+        channel: 'dev'
+    
+    - name: Enable web
+      run: flutter config --enable-web
+    
+    - name: Build
+      working-directory: example
+      run: |
+        flutter create .
+        flutter pub get
+        flutter build web
+      
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v2.5.1
+      env:
+        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: ./example/build/web

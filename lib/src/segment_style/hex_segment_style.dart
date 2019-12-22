@@ -210,4 +210,19 @@ class HexSegmentStyle extends SegmentStyle {
       ..lineTo(pos.left, pos.top + segmentSize.height - _halfSpace)
       ..close();
   }
+
+  @override
+  SegmentStyle copyWith({
+    Size segmentBaseSize,
+    Color enabledColor,
+    Color disabledColor,
+    double segmentSpacing,
+  }) {
+    return HexSegmentStyle(
+      enabledColor: enabledColor ?? this.enabledColor,
+      disabledColor: disabledColor ?? this.disabledColor,
+      segmentBaseSize: segmentBaseSize ?? this.segmentBaseSize,
+      segmentSpacing: segmentSpacing ?? this.segmentSpacing,
+    );
+  }
 }

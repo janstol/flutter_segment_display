@@ -1,3 +1,8 @@
+## [0.4.1] - 2019-12-22
+* updated dependencies (SDK >=2.6.0)
+* updated analysis_options.yml (linter)
+* added [web demo](https://janstol.github.io/flutter_segment_display/)
+
 ## [0.4.0] - 2019-11-25
 * added support for `.` (decimal point) and `:` (colon) characters
 * **BREAKING CHANGE:** `SegmentDisplay.text` changed to `SegmentDisplay.value`
