@@ -3,14 +3,17 @@ description: Segment display example
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.6.0 <3.0.0"
+  sdk: ">=2.8.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  intl: ^0.16.0
+  intl: ^0.16.1
   segment_display:
     path: ../
+
+dev_dependencies:
+  lint: ^1.2.0
 
 flutter:
   uses-material-design: true

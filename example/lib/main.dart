@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:segment_display/segment_display.dart';
 import 'package:intl/intl.dart';
 
-void main() => runApp(App(
-      title: 'Segment display example',
-    ));
+void main() => runApp(const App(title: 'Segment display example'));
 
 class App extends StatefulWidget {
   const App({Key key, this.title}) : super(key: key);
@@ -121,9 +119,9 @@ class _AppState extends State<App> {
               onSelected: _changeDisplayType,
               itemBuilder: (context) {
                 return [
-                  PopupMenuItem<int>(value: 0, child: const Text('7-segment')),
-                  PopupMenuItem<int>(value: 1, child: const Text('14-segment')),
-                  PopupMenuItem<int>(value: 2, child: const Text('16-segment')),
+                  const PopupMenuItem<int>(value: 0, child: Text('7-segment')),
+                  const PopupMenuItem<int>(value: 1, child: Text('14-segment')),
+                  const PopupMenuItem<int>(value: 2, child: Text('16-segment')),
                 ];
               },
             ),
@@ -133,29 +131,29 @@ class _AppState extends State<App> {
               onSelected: _changeColor,
               itemBuilder: (context) {
                 return [
-                  PopupMenuItem<Color>(
-                    value: const Color(0xFFFF0000),
-                    child: const Text('Red'),
+                  const PopupMenuItem<Color>(
+                    value: Color(0xFFFF0000),
+                    child: Text('Red'),
                   ),
-                  PopupMenuItem<Color>(
-                    value: const Color(0xFF00FF00),
-                    child: const Text('Green'),
+                  const PopupMenuItem<Color>(
+                    value: Color(0xFF00FF00),
+                    child: Text('Green'),
                   ),
-                  PopupMenuItem<Color>(
-                    value: const Color(0xFF0000FF),
-                    child: const Text('Blue'),
+                  const PopupMenuItem<Color>(
+                    value: Color(0xFF0000FF),
+                    child: Text('Blue'),
                   ),
-                  PopupMenuItem<Color>(
-                    value: const Color(0xFF00FFFF),
-                    child: const Text('Cyan'),
+                  const PopupMenuItem<Color>(
+                    value: Color(0xFF00FFFF),
+                    child: Text('Cyan'),
                   ),
-                  PopupMenuItem<Color>(
-                    value: const Color(0xFFFFFF00),
-                    child: const Text('Yellow'),
+                  const PopupMenuItem<Color>(
+                    value: Color(0xFFFFFF00),
+                    child: Text('Yellow'),
                   ),
-                  PopupMenuItem<Color>(
-                    value: const Color(0xFFFFFFFF),
-                    child: const Text('White'),
+                  const PopupMenuItem<Color>(
+                    value: Color(0xFFFFFFFF),
+                    child: Text('White'),
                   ),
                 ];
               },
@@ -167,7 +165,7 @@ class _AppState extends State<App> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               _Display(
-                value: '${DateFormat("HH:mm").format(DateTime.now())}',
+                value: DateFormat('HH:mm').format(DateTime.now()),
                 size: 7.0,
                 type: _displayType,
                 style: _segmentStyle,

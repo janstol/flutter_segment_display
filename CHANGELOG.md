@@ -1,3 +1,6 @@
+## [0.4.1+1] - 2020-05-09
+* minor update (fixed lints, updated example)
+
 ## [0.4.1] - 2019-12-22
 * updated dependencies (SDK >=2.6.0)
 * updated analysis_options.yml (linter)
