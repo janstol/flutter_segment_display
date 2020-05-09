@@ -21,7 +21,7 @@ jobs:
       - name: Build
         working-directory: example
         run: |
-          flutter create .
+          flutter create --project-name flutter_segment_display_example .
           flutter pub get
           flutter build web
 
