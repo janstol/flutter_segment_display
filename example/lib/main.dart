@@ -82,7 +82,7 @@ class _AppState extends State<App> {
           actions: <Widget>[
             PopupMenuButton<SegmentStyle>(
               tooltip: 'Segment style',
-              icon: Icon(Icons.style),
+              icon: const Icon(Icons.style),
               onSelected: _changeSegmentStyle,
               itemBuilder: (context) {
                 return [
@@ -115,7 +115,7 @@ class _AppState extends State<App> {
             ),
             PopupMenuButton<int>(
               tooltip: 'Display type',
-              icon: Icon(Icons.filter_7),
+              icon: const Icon(Icons.filter_7),
               onSelected: _changeDisplayType,
               itemBuilder: (context) {
                 return [
@@ -127,7 +127,7 @@ class _AppState extends State<App> {
             ),
             PopupMenuButton<Color>(
               tooltip: 'Color',
-              icon: Icon(Icons.color_lens),
+              icon: const Icon(Icons.color_lens),
               onSelected: _changeColor,
               itemBuilder: (context) {
                 return [
@@ -198,7 +198,7 @@ class _AppState extends State<App> {
         floatingActionButton: FloatingActionButton(
           onPressed: _incrementCounter,
           tooltip: 'Increment',
-          child: Icon(Icons.add),
+          child: const Icon(Icons.add),
         ),
       ),
     );
