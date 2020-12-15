@@ -1,3 +1,6 @@
+## [0.5.0-nullsafety.0] - 2020-12-15
+* migrated to nullsafety
+
 ## [0.4.1+1] - 2020-05-09
 * minor update (fixed lints, updated example)
 

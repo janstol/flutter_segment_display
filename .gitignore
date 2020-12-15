@@ -5,6 +5,7 @@
 .vscode/
 .packages
 .pub/
+.fvm/
 
 build/
 ios/.generated/

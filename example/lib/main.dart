@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 void main() => runApp(const App(title: 'Segment display example'));
 
 class App extends StatefulWidget {
-  const App({Key key, this.title}) : super(key: key);
+  const App({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -14,11 +14,11 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  int _counter;
-  int _displayType;
-  SegmentStyle _segmentStyle;
-  Color _accentColor;
-  bool _decimalPointEnabled;
+  late int _counter;
+  late int _displayType;
+  late SegmentStyle _segmentStyle;
+  late Color _accentColor;
+  late bool _decimalPointEnabled;
 
   @override
   void initState() {
@@ -211,8 +211,13 @@ class _Display extends StatelessWidget {
   final double size;
   final SegmentStyle style;
 
-  const _Display({Key key, this.value, this.type, this.style, this.size})
-      : super(key: key);
+  const _Display({
+    Key? key,
+    required this.value,
+    required this.type,
+    required this.style,
+    required this.size,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

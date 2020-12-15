@@ -13,9 +13,9 @@ class DefaultSegmentStyle extends SegmentStyle {
 
   /// Creates default [SegmentStyle]
   const DefaultSegmentStyle({
-    Size segmentBaseSize,
-    Color enabledColor,
-    Color disabledColor,
+    Size? segmentBaseSize,
+    Color? enabledColor,
+    Color? disabledColor,
     this.segmentSpacing = 4.0,
   })  : _halfSpace = segmentSpacing / 2,
         super(
@@ -399,10 +399,10 @@ class DefaultSegmentStyle extends SegmentStyle {
 
   @override
   SegmentStyle copyWith({
-    Size segmentBaseSize,
-    Color enabledColor,
-    Color disabledColor,
-    double segmentSpacing,
+    Size? segmentBaseSize,
+    Color? enabledColor,
+    Color? disabledColor,
+    double? segmentSpacing,
   }) {
     return DefaultSegmentStyle(
       enabledColor: enabledColor ?? this.enabledColor,

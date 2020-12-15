@@ -14,9 +14,9 @@ class HexSegmentStyle extends SegmentStyle {
 
   /// Creates elongated hexagon [SegmentStyle].
   const HexSegmentStyle({
-    Size segmentBaseSize,
-    Color enabledColor,
-    Color disabledColor,
+    Size? segmentBaseSize,
+    Color? enabledColor,
+    Color? disabledColor,
     this.segmentSpacing = 4.0,
   })  : _halfSpace = segmentSpacing / 2,
         super(
@@ -213,10 +213,10 @@ class HexSegmentStyle extends SegmentStyle {
 
   @override
   SegmentStyle copyWith({
-    Size segmentBaseSize,
-    Color enabledColor,
-    Color disabledColor,
-    double segmentSpacing,
+    Size? segmentBaseSize,
+    Color? enabledColor,
+    Color? disabledColor,
+    double? segmentSpacing,
   }) {
     return HexSegmentStyle(
       enabledColor: enabledColor ?? this.enabledColor,

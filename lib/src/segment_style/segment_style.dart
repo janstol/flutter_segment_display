@@ -37,9 +37,9 @@ abstract class SegmentStyle {
   final Color disabledColor;
 
   const SegmentStyle({
-    Size segmentBaseSize,
-    Color enabledColor,
-    Color disabledColor,
+    Size? segmentBaseSize,
+    Color? enabledColor,
+    Color? disabledColor,
   })  : segmentBaseSize = segmentBaseSize ?? const Size(1.0, 4.0),
         enabledColor = enabledColor ?? const Color(0xffff0000),
         disabledColor = disabledColor ?? const Color(0x2fff0000);
@@ -293,5 +293,5 @@ abstract class SegmentStyle {
   Path createPath16M(Size segmentSize, double padding) =>
       createPath14M(segmentSize, padding);
 
-  SegmentStyle copyWith({Color enabledColor, Color disabledColor});
+  SegmentStyle copyWith({Color? enabledColor, Color? disabledColor});
 }
