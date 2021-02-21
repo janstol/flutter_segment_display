@@ -1,3 +1,6 @@
+## [0.4.2] - 2021-02-21
+* added minus and underscore to 7-segment display (thanks [@prwater](https://github.com/prwater) for [contribution](https://github.com/janstol/flutter_segment_display/pull/4))
+
 ## [0.4.1+1] - 2020-05-09
 * minor update (fixed lints, updated example)
 

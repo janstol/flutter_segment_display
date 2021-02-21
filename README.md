@@ -36,7 +36,7 @@ See [WEB DEMO](https://janstol.github.io/flutter_segment_display/).
 Add this to your package's pubspec.yaml file:
 ```yaml
 dependencies:
-  segment_display: ^0.4.1+1
+  segment_display: ^0.4.2
 ```
 2. **Install it**
 
