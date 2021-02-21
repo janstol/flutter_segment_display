@@ -47,6 +47,8 @@ class CharacterSegmentMap {
     'U': 0x3E,
     'u': 0x1C,
     'y': 0x3B,
+    '-': 0x01,
+    '_': 0x08,
   };
 
   /// Characters that can be displayed on 14-segment display.
