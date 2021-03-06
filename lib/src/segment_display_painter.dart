@@ -4,10 +4,10 @@ import 'package:segment_display/src/segment/segment.dart';
 /// [CustomPainter] used for painting display segments
 class SegmentDisplayPainter extends CustomPainter {
   /// [Paint] style for enabled segments.
-  Paint _enabledPaint;
+  late Paint _enabledPaint;
 
   /// [Paint] style for disabled segments.
-  Paint _disabledPaint;
+  late Paint _disabledPaint;
 
   /// All segments that should be drawn.
   List<Segment> segments;
@@ -18,9 +18,9 @@ class SegmentDisplayPainter extends CustomPainter {
   /// Creates [SegmentDisplayPainter], sets paint styles and splits [segments]
   /// (paths) into enabled and disabled.
   SegmentDisplayPainter({
-    @required this.segments,
-    Color enabledColor,
-    Color disabledColor,
+    required this.segments,
+    required Color enabledColor,
+    required Color disabledColor,
   }) {
     _enabledPaint = Paint()
       ..style = PaintingStyle.fill

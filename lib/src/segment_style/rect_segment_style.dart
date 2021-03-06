@@ -11,9 +11,9 @@ import 'package:segment_display/src/segment_style/segment_style.dart';
 class RectSegmentStyle extends SegmentStyle {
   /// Creates rectangular [SegmentStyle].
   const RectSegmentStyle({
-    Size segmentBaseSize,
-    Color enabledColor,
-    Color disabledColor,
+    Size? segmentBaseSize,
+    Color? enabledColor,
+    Color? disabledColor,
   }) : super(
           segmentBaseSize: segmentBaseSize,
           enabledColor: enabledColor,
@@ -77,10 +77,10 @@ class RectSegmentStyle extends SegmentStyle {
 
   @override
   SegmentStyle copyWith({
-    Size segmentBaseSize,
-    Color enabledColor,
-    Color disabledColor,
-    double segmentSpacing,
+    Size? segmentBaseSize,
+    Color? enabledColor,
+    Color? disabledColor,
+    double? segmentSpacing,
   }) {
     return RectSegmentStyle(
       enabledColor: enabledColor ?? this.enabledColor,

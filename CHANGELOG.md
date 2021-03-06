@@ -1,3 +1,6 @@
+## [0.5.0] - 2021-03-06
+* migrated to nullsafety
+
 ## [0.4.2] - 2021-02-21
 * added minus and underscore to 7-segment display (thanks [@prwater](https://github.com/prwater) for [contribution](https://github.com/janstol/flutter_segment_display/pull/4))
 

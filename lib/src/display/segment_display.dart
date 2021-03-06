@@ -40,7 +40,7 @@ abstract class SegmentDisplay extends StatelessWidget {
   ///     this will be displayed like "__1" (left padded).
   ///  * [characterCount] is set to 1 and [value] value to "123" -
   ///     this will be displayed like "3" (only last character).
-  final int characterCount;
+  final int? characterCount;
 
   /// Space between individual characters
   final double characterSpacing;
@@ -57,14 +57,14 @@ abstract class SegmentDisplay extends StatelessWidget {
   final Map<String, int> characterMap;
 
   const SegmentDisplay({
-    Key key,
-    @required this.value,
-    @required this.characterMap,
-    double size,
-    SegmentStyle segmentStyle,
+    Key? key,
+    required this.value,
+    required this.characterMap,
+    double? size,
+    SegmentStyle? segmentStyle,
     this.characterCount,
-    double characterSpacing,
-    Color backgroundColor,
+    double? characterSpacing,
+    Color? backgroundColor,
   })  : size = size ?? 10.0,
         segmentStyle = segmentStyle ?? const DefaultSegmentStyle(),
         characterSpacing = characterSpacing ?? 7.0,
@@ -136,7 +136,7 @@ abstract class SegmentDisplay extends StatelessWidget {
       if (char.isNotEmpty && canDisplay(char)) {
         final encoding = characterMap[char];
         for (var i = 0; i < characterSegments.length; i++) {
-          if (encoding >> i & 1 == 1) {
+          if (encoding! >> i & 1 == 1) {
             characterSegments[i].isEnabled = true;
           }
         }
@@ -171,7 +171,7 @@ abstract class SegmentDisplay extends StatelessWidget {
   List<Segment> createSingleCharacter(double indent);
 
   /// Creates special segment to display dividers like decimal point or colon.
-  Segment createDividerCharacter(String character, double indent) {
+  Segment? createDividerCharacter(String character, double indent) {
     if (character == CharacterSegmentMap.dividerCharacters['decimalPoint']) {
       return Segment.decimalPoint(segmentStyle, segmentSize, indent);
     } else if (character == CharacterSegmentMap.dividerCharacters['colon']) {

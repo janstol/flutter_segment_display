@@ -12,13 +12,13 @@ class FourteenSegmentDisplay extends SegmentDisplay {
   ///
   /// see [SegmentDisplay] for more info about properties and methods.
   const FourteenSegmentDisplay({
-    Key key,
-    @required String value,
-    SegmentStyle segmentStyle,
-    double size,
-    int characterCount,
-    double characterSpacing,
-    Color backgroundColor,
+    Key? key,
+    required String value,
+    SegmentStyle? segmentStyle,
+    double? size,
+    int? characterCount,
+    double? characterSpacing,
+    Color? backgroundColor,
   }) : super(
           key: key,
           value: value,

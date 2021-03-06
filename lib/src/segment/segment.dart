@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:flutter/foundation.dart';
 import 'package:segment_display/src/segment_style/segment_style.dart';
 
 /// Single segment in segment display such as [SevenSegmentDisplay].
@@ -13,7 +12,7 @@ class Segment {
 
   /// Creates single display segment
   Segment({
-    @required this.path,
+    required this.path,
     this.isEnabled = false,
   });
 
@@ -76,7 +75,7 @@ class Segment {
       : this(path: style.createPath14B(segmentSize, padding));
 
   /// Creates bottom right vertical segment in 14-segment display
-  Segment.fourteenC(SegmentStyle style, Size segmentSize, double padding)
+  Segment.fourteenC(SegmentStyle style/*!*/, Size segmentSize, double padding)
       : this(path: style.createPath14C(segmentSize, padding));
 
   /// Creates bottom segment in 14-segment display

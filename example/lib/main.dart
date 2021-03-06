@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 void main() => runApp(const App(title: 'Segment display example'));
 
 class App extends StatefulWidget {
-  const App({Key key, this.title}) : super(key: key);
+  const App({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -14,29 +14,30 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  int _counter;
-  int _displayType;
-  SegmentStyle _segmentStyle;
-  Color _accentColor;
-  bool _decimalPointEnabled;
+  late int _displayType;
+  late SegmentStyle _segmentStyle;
+  late Color _accentColor;
+  late String _text;
+  late TextEditingController _controller;
 
   @override
   void initState() {
     super.initState();
     _accentColor = const Color(0xFFFF0000);
-    _counter = 0;
     _displayType = 0;
-    _decimalPointEnabled = false;
     _segmentStyle = DefaultSegmentStyle(
       enabledColor: _accentColor,
       disabledColor: _accentColor.withOpacity(0.15),
     );
+    _text = 'HELLO';
+    _controller = TextEditingController();
+    _controller.value = TextEditingValue(text: _text);
   }
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   void _changeSegmentStyle(SegmentStyle segmentStyle) {
@@ -58,12 +59,6 @@ class _AppState extends State<App> {
         enabledColor: _accentColor,
         disabledColor: _accentColor.withOpacity(0.15),
       );
-    });
-  }
-
-  void _switchDecimal(bool value) {
-    setState(() {
-      _decimalPointEnabled = value;
     });
   }
 
@@ -172,33 +167,28 @@ class _AppState extends State<App> {
               ),
               const SizedBox(height: 100),
               _Display(
-                value: 'Count',
-                size: 5.0,
+                value: _text,
+                size: 7.0,
                 type: _displayType,
                 style: _segmentStyle,
               ),
-              const SizedBox(height: 30),
-              _Display(
-                value: _decimalPointEnabled
-                    ? (_counter / 10).toStringAsFixed(1)
-                    : '$_counter',
-                size: 12.0,
-                type: _displayType,
-                style: _segmentStyle,
-              ),
-              const SizedBox(height: 30),
-              Switch(
-                value: _decimalPointEnabled,
-                activeColor: _accentColor,
-                onChanged: _switchDecimal,
+              const SizedBox(height: 50),
+              SizedBox(
+                width: 250.0,
+                child: TextField(
+                  controller: _controller,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Change me',
+                  ),
+                  maxLength: 20,
+                  onChanged: (String text) async {
+                    setState(() => _text = text.isEmpty ? ' ' : text);
+                  },
+                ),
               ),
             ],
           ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: _incrementCounter,
-          tooltip: 'Increment',
-          child: const Icon(Icons.add),
         ),
       ),
     );
@@ -211,8 +201,13 @@ class _Display extends StatelessWidget {
   final double size;
   final SegmentStyle style;
 
-  const _Display({Key key, this.value, this.type, this.style, this.size})
-      : super(key: key);
+  const _Display({
+    Key? key,
+    required this.value,
+    required this.type,
+    required this.style,
+    required this.size,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

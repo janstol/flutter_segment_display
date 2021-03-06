@@ -28,7 +28,6 @@ Supports multiple types of segment displays and segment customization.
 * Supports `.` (decimal point) and `:` (colon) characters
 
 See [WEB DEMO](https://janstol.github.io/flutter_segment_display/).
-> NOTE: Flutter web support is currently in beta, so you may experience some issues.
 
 ## [Installation](https://pub.dev/packages/segment_display#-installing-tab-)
 1. **Depend on it**
@@ -36,7 +35,7 @@ See [WEB DEMO](https://janstol.github.io/flutter_segment_display/).
 Add this to your package's pubspec.yaml file:
 ```yaml
 dependencies:
-  segment_display: ^0.4.2
+  segment_display: ^0.5.0
 ```
 2. **Install it**
 
