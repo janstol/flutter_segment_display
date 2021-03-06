@@ -15,15 +15,12 @@ jobs:
         with:
           channel: 'beta'
 
-      - name: Enable web
-        run: flutter config --enable-web
-
       - name: Build
         working-directory: example
         run: |
           flutter create --project-name flutter_segment_display_example .
           flutter pub get
-          flutter build web
+          flutter build web --web-renderer canvaskit
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
