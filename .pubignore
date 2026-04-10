@@ -1,0 +1,19 @@
+# Generated docs and build artefacts
+doc/
+build/
+.dart_tool/
+test/goldens/*_testImage.png
+test/goldens/*_maskedDiff.png
+test/goldens/*_masterImage.png
+
+# Development / IDE files
+*.local.*
+.mise.toml
+.github/
+*.iml
+
+# Example app (not needed by package consumers)
+example/android/
+example/ios/
+example/build/
+example/web/
