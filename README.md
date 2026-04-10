@@ -2,7 +2,7 @@
 ![Segment display](img/segment_display.png)
 
 [![Pub](https://img.shields.io/pub/v/segment_display.svg?style=flat-square)](https://pub.dev/packages/segment_display)
-[![Build Status](https://travis-ci.com/janstol/flutter_segment_display.svg?branch=master)](https://travis-ci.com/janstol/flutter_segment_display)
+[![CI](https://github.com/janstol/flutter_segment_display/actions/workflows/ci.yml/badge.svg)](https://github.com/janstol/flutter_segment_display/actions/workflows/ci.yml)
 [![Demo](https://img.shields.io/badge/demo-WEB-blue)](https://janstol.github.io/flutter_segment_display/)
 
 Segment display widget for [Flutter](https://flutter.dev). 
