@@ -1,5 +1,3 @@
-library segment_display;
-
 // segments
 export 'package:segment_display/src/segment/segment.dart';
 export 'package:segment_display/src/segment/segment_position.dart';

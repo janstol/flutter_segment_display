@@ -11,14 +11,10 @@ import 'package:segment_display/src/segment_style/segment_style.dart';
 class RectSegmentStyle extends SegmentStyle {
   /// Creates rectangular [SegmentStyle].
   const RectSegmentStyle({
-    Size? segmentBaseSize,
-    Color? enabledColor,
-    Color? disabledColor,
-  }) : super(
-          segmentBaseSize: segmentBaseSize,
-          enabledColor: enabledColor,
-          disabledColor: disabledColor,
-        );
+    super.segmentBaseSize,
+    super.enabledColor,
+    super.disabledColor,
+  });
 
   @override
   Path createHorizontalPath(SegmentPosition position, Size segmentSize) {

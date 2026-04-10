@@ -13,16 +13,11 @@ class DefaultSegmentStyle extends SegmentStyle {
 
   /// Creates default [SegmentStyle]
   const DefaultSegmentStyle({
-    Size? segmentBaseSize,
-    Color? enabledColor,
-    Color? disabledColor,
+    super.segmentBaseSize,
+    super.enabledColor,
+    super.disabledColor,
     this.segmentSpacing = 4.0,
-  })  : _halfSpace = segmentSpacing / 2,
-        super(
-          segmentBaseSize: segmentBaseSize,
-          enabledColor: enabledColor,
-          disabledColor: disabledColor,
-        );
+  }) : _halfSpace = segmentSpacing / 2;
 
   @override
   Path createHorizontalPath(SegmentPosition position, Size segmentSize) {

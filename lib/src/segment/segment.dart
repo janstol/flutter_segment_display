@@ -17,10 +17,14 @@ class Segment {
   });
 
   /// Creates segment for decimal point (`.`).
-  Segment.decimalPoint(SegmentStyle style, Size segmentSize, double padding)
-      : this(
+  Segment.decimalPoint(
+    SegmentStyle style,
+    Size segmentSize,
+    double padding, {
+    bool isEnabled = true,
+  }) : this(
           path: style.createDecimalPointPath(segmentSize, padding),
-          isEnabled: true,
+          isEnabled: isEnabled,
         );
 
   /// Creates segment for colon (`:`).

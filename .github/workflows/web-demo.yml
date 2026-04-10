@@ -10,20 +10,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: subosito/flutter-action@v1.4.0
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
         with:
-          channel: 'beta'
+          flutter-version: '3.35.7'
+          channel: 'stable'
 
       - name: Build
         working-directory: example
         run: |
-          flutter create --project-name flutter_segment_display_example .
           flutter pub get
-          flutter build web --web-renderer canvaskit
+          flutter build web
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages

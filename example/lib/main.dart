@@ -5,12 +5,12 @@ import 'package:intl/intl.dart';
 void main() => runApp(const App(title: 'Segment display example'));
 
 class App extends StatefulWidget {
-  const App({Key? key, required this.title}) : super(key: key);
+  const App({super.key, required this.title});
 
   final String title;
 
   @override
-  _AppState createState() => _AppState();
+  State<App> createState() => _AppState();
 }
 
 class _AppState extends State<App> {
@@ -27,7 +27,7 @@ class _AppState extends State<App> {
     _displayType = 0;
     _segmentStyle = DefaultSegmentStyle(
       enabledColor: _accentColor,
-      disabledColor: _accentColor.withOpacity(0.15),
+      disabledColor: _accentColor.withValues(alpha: 0.15),
     );
     _text = 'HELLO';
     _controller = TextEditingController();
@@ -57,7 +57,7 @@ class _AppState extends State<App> {
       _accentColor = color;
       _segmentStyle = _segmentStyle.copyWith(
         enabledColor: _accentColor,
-        disabledColor: _accentColor.withOpacity(0.15),
+        disabledColor: _accentColor.withValues(alpha: 0.15),
       );
     });
   }
@@ -67,8 +67,10 @@ class _AppState extends State<App> {
     return MaterialApp(
       title: widget.title,
       theme: ThemeData(
-        accentColor: _accentColor,
-        brightness: Brightness.dark,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: _accentColor,
+          brightness: Brightness.dark,
+        ),
       ),
       home: Scaffold(
         backgroundColor: Colors.black,
@@ -83,25 +85,22 @@ class _AppState extends State<App> {
                 return [
                   PopupMenuItem<SegmentStyle>(
                     value: DefaultSegmentStyle(
-                      enabledColor: Theme.of(context).accentColor,
-                      disabledColor:
-                          Theme.of(context).accentColor.withOpacity(0.15),
+                      enabledColor: _accentColor,
+                      disabledColor: _accentColor.withValues(alpha: 0.15),
                     ),
                     child: const Text('Default'),
                   ),
                   PopupMenuItem<SegmentStyle>(
                     value: RectSegmentStyle(
-                      enabledColor: Theme.of(context).accentColor,
-                      disabledColor:
-                          Theme.of(context).accentColor.withOpacity(0.15),
+                      enabledColor: _accentColor,
+                      disabledColor: _accentColor.withValues(alpha: 0.15),
                     ),
                     child: const Text('Rect'),
                   ),
                   PopupMenuItem<SegmentStyle>(
                     value: HexSegmentStyle(
-                      enabledColor: Theme.of(context).accentColor,
-                      disabledColor:
-                          Theme.of(context).accentColor.withOpacity(0.15),
+                      enabledColor: _accentColor,
+                      disabledColor: _accentColor.withValues(alpha: 0.15),
                     ),
                     child: const Text('Hex'),
                   ),
@@ -115,8 +114,10 @@ class _AppState extends State<App> {
               itemBuilder: (context) {
                 return [
                   const PopupMenuItem<int>(value: 0, child: Text('7-segment')),
-                  const PopupMenuItem<int>(value: 1, child: Text('14-segment')),
-                  const PopupMenuItem<int>(value: 2, child: Text('16-segment')),
+                  const PopupMenuItem<int>(
+                      value: 1, child: Text('14-segment')),
+                  const PopupMenuItem<int>(
+                      value: 2, child: Text('16-segment')),
                 ];
               },
             ),
@@ -202,12 +203,11 @@ class _Display extends StatelessWidget {
   final SegmentStyle style;
 
   const _Display({
-    Key? key,
     required this.value,
     required this.type,
     required this.style,
     required this.size,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

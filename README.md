@@ -1,7 +1,7 @@
 # Segment display widget
 ![Segment display](img/segment_display.png)
 
-[![Pub](https://img.shields.io/pub/v/segment_display.svg?style=flat-square)](https://pub.dartlang.org/packages/segment_display)
+[![Pub](https://img.shields.io/pub/v/segment_display.svg?style=flat-square)](https://pub.dev/packages/segment_display)
 [![Build Status](https://travis-ci.com/janstol/flutter_segment_display.svg?branch=master)](https://travis-ci.com/janstol/flutter_segment_display)
 [![Demo](https://img.shields.io/badge/demo-WEB-blue)](https://janstol.github.io/flutter_segment_display/)
 
@@ -16,6 +16,8 @@ Supports multiple types of segment displays and segment customization.
   - [Fourteen-segment display](#fourteen-segment-display)
   - [Sixteen-segment display](#sixteen-segment-display)
 * [Styles and customization](#styles-and-customization)
+  - [Disabled dividers](#disabled-dividers)
+  - [Custom character map](#custom-character-map)
   - [Segment style](#segment-style)
   - [Custom segment styles](#custom-segment-styles)
 * [Features and bugs](#features-and-bugs)
@@ -26,6 +28,8 @@ Supports multiple types of segment displays and segment customization.
 * 16-segment display
 * Customizable segment shapes (segment styles)
 * Supports `.` (decimal point) and `:` (colon) characters
+* Always-visible disabled decimal points (`showDisabledDividers`)
+* Custom character-to-bitmask entries (`customCharacterMap`)
 
 See [WEB DEMO](https://janstol.github.io/flutter_segment_display/).
 
@@ -35,15 +39,14 @@ See [WEB DEMO](https://janstol.github.io/flutter_segment_display/).
 Add this to your package's pubspec.yaml file:
 ```yaml
 dependencies:
-  segment_display: ^0.5.0
+  segment_display: ^0.6.0
 ```
 2. **Install it**
 
 You can install packages from the command line:
 ```
-$ flutter packages get
+$ flutter pub get
 ```
-Alternatively, your editor might support flutter packages get. Check the docs for your editor to learn more.
 
 3. **Import it**
 
@@ -92,21 +95,48 @@ SixteenSegmentDisplay(
 
 ## Styles and customization
 You can customize segment display with:
-- `characterSpacing`- space between individual characters
+- `characterSpacing` - space between individual characters
 - `backgroundColor` - display background color
 - `segmentStyle` - style for segments (shape, color,...), see [segment style](#segment-style)
+- `showDisabledDividers` - always show a decimal point after each digit (dim unless `.` is present in `value`)
+- `customCharacterMap` - add or override character-to-bitmask entries
 
 **Example:**
 ```dart
 SevenSegmentDisplay(
-  text: "123",
-  textSize: 12.0,
+  value: "123",
+  size: 12.0,
   characterSpacing: 10.0,
   backgroundColor: Colors.transparent,
   segmentStyle: HexSegmentStyle(
     enabledColor: Colors.red,
-    disabledColor: Colors.red.withOpacity(0.15),
+    disabledColor: Colors.red.withValues(alpha: 0.15),
   ),
+)
+```
+
+### Disabled dividers
+
+Set `showDisabledDividers: true` to always show a decimal point after each digit — dim when not in `value`, lit when `.` follows the character:
+
+```dart
+SevenSegmentDisplay(
+  value: "12.3",
+  size: 12.0,
+  showDisabledDividers: true,  // dots visible after all digits
+)
+```
+
+### Custom character map
+
+Use `customCharacterMap` to add characters not in the built-in map, or override existing ones, by supplying a `char → bitmask` map:
+
+```dart
+// 7-segment: bit 0 = G (middle), bit 6 = A (top), etc.
+SevenSegmentDisplay(
+  value: "~",
+  size: 12.0,
+  customCharacterMap: {'~': 0x63},
 )
 ```
 
@@ -121,7 +151,7 @@ To change segment color, size or shape, use segment style.
 - RectSegmentStyle  
 ![RectSegmentStyle](img/styles/style_rect.png)
 
-and you can also **create or own style (shape)** - see [custom segment styles](#custom-segment-styles)
+and you can also **create your own style (shape)** - see [custom segment styles](#custom-segment-styles)
 
 **Example:**
 ```dart
@@ -130,7 +160,7 @@ SevenSegmentDisplay(
   size: 12.0,
   segmentStyle: HexSegmentStyle(
     enabledColor: const Color(0xFF00FF00),
-    disabledColor: const Color(0xFF00FF00).withOpacity(0.15),
+    disabledColor: const Color(0xFF00FF00).withValues(alpha: 0.15),
     segmentBaseSize: const Size(1.0, 2.0),
   ),
 )
@@ -140,26 +170,23 @@ SevenSegmentDisplay(
 - `enabledColor` - color of enabled segments
 - `disabledColor` - color of disabled segments
 - `segmentBaseSize` - size ratio for segments; `Size(1.0, 2.0)` basically means that ratio will be 1:2 *(width:length)*
-> NOTE: `SegmentStyle.segmentBaseSize` * `SegmentDisplay.textSize` = segmentSize
+> NOTE: `SegmentStyle.segmentBaseSize` * `SegmentDisplay.size` = segmentSize
 
 
 
 ### Custom segment styles
-To create your own segment style (shape), extends `SegmentStyle` class and implement methods 
+To create your own segment style (shape), extend `SegmentStyle` and implement
 `createHorizontalPath`, `createVerticalPath`, `createDiagonalBackwardPath` and `createDiagonalForwardPath`.
 
 ```dart
 class CustomSegmentStyle extends SegmentStyle {
 
   const CustomSegmentStyle({
-    Size segmentBaseSize,
-    Color enabledColor,
-    Color disabledColor,
-  }) : super(
-          segmentBaseSize: segmentBaseSize,
-          enabledColor: enabledColor,
-          disabledColor: disabledColor,
-        );
+    super.segmentBaseSize,
+    super.enabledColor,
+    super.disabledColor,
+  });
+
   @override
   Path createHorizontalPath(SegmentPosition position, Size segmentSize) {
     // ...
@@ -181,7 +208,7 @@ class CustomSegmentStyle extends SegmentStyle {
   }
 }
 ```
-You can also customize shape for individual segments by overriding `createPath**` methods.
+You can also customize the shape for individual segments by overriding `createPath**` methods.
 For 7-segment display, there are `createPath7*` methods, for 14-segment display `createPath14*` and so on.
 
 Example: if you want to change the shape of the top segment in 7-segment display, you just have to override `createPath7A` method.

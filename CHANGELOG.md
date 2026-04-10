@@ -1,3 +1,18 @@
+## [0.6.0] - 2026-04-10
+* migrated to Dart 3 / Flutter 3 (SDK constraint `>=3.0.0 <4.0.0`)
+* replaced deprecated `lint` package with `flutter_lints ^5.0.0`
+* updated `intl` to `^0.19.0` in example
+* updated `analysis_options.yaml` (removed Dart 2 `strong-mode` options)
+* modernized constructors to use super parameters
+* updated golden test images for Flutter 3 renderer
+* added `.mise.toml` for Flutter version pinning (3.35.7)
+* added `showDisabledDividers` parameter — always show decimal point after each
+  character (dim unless `.` follows in `value`), closes #6
+* added `customCharacterMap` parameter — merge custom `char → bitmask` entries
+  on top of the built-in map, closes #1
+* fixed `computeSize()` spacing formula consistency (#5)
+* updated GitHub Actions workflow actions to current versions
+
 ## [0.5.0] - 2021-03-06
 * migrated to nullsafety
 

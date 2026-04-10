@@ -9,9 +9,9 @@
 .fvm/
 
 build/
-ios/.generated/
-ios/Flutter/Generated.xcconfig
-ios/Runner/GeneratedPluginRegistrant.*
+ios/
+**/ios/Flutter/ephemeral/
+test/failures/
 /android/local.properties
 /android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java
 

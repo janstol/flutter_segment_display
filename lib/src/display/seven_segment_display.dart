@@ -1,8 +1,6 @@
-import 'package:flutter/widgets.dart';
 import 'package:segment_display/src/character_segment_map.dart';
 import 'package:segment_display/src/display/segment_display.dart';
 import 'package:segment_display/src/segment/segment.dart';
-import 'package:segment_display/src/segment_style/segment_style.dart';
 
 /// 7-segment display stateless widget.
 ///
@@ -11,23 +9,31 @@ class SevenSegmentDisplay extends SegmentDisplay {
   /// Creates a 7-segment display.
   ///
   /// see [SegmentDisplay] for more info about properties and methods.
-  const SevenSegmentDisplay({
-    Key? key,
-    required String value,
-    SegmentStyle? segmentStyle,
-    double? size,
-    int? characterCount,
-    double? characterSpacing,
-    Color? backgroundColor,
+  ///
+  /// Use [customCharacterMap] to add or override character-to-bitmask entries.
+  /// Custom entries are merged on top of [CharacterSegmentMap.seven].
+  ///
+  /// Example — custom pattern for character `'*'`:
+  /// ```dart
+  /// SevenSegmentDisplay(
+  ///   value: '*',
+  ///   customCharacterMap: {'*': 0x63},
+  /// )
+  /// ```
+  SevenSegmentDisplay({
+    super.key,
+    required super.value,
+    super.segmentStyle,
+    super.size,
+    super.characterCount,
+    super.characterSpacing,
+    super.backgroundColor,
+    super.showDisabledDividers,
+    Map<String, int>? customCharacterMap,
   }) : super(
-          key: key,
-          value: value,
-          size: size,
-          segmentStyle: segmentStyle,
-          characterCount: characterCount,
-          characterSpacing: characterSpacing,
-          backgroundColor: backgroundColor,
-          characterMap: CharacterSegmentMap.seven,
+          characterMap: customCharacterMap == null
+              ? CharacterSegmentMap.seven
+              : {...CharacterSegmentMap.seven, ...customCharacterMap},
         );
 
   @override

@@ -1,25 +1,18 @@
 os:
   - linux
-sudo: false
+language: generic
 addons:
   apt:
-    sources:
-      - ubuntu-toolchain-r-test
     packages:
       - libstdc++6
       - fonts-droid-fallback
-env:
-  - FLUTTER_VERSION=beta
-  - FLUTTER_VERSION=dev
 cache:
   directories:
     - $HOME/.pub-cache
-matrix:
-  allow_failures:
-    - env: FLUTTER_VERSION=dev
 before_script:
-  - git clone https://github.com/flutter/flutter.git -b $FLUTTER_VERSION
-  - ./flutter/bin/flutter doctor
+  - git clone https://github.com/flutter/flutter.git -b stable --depth 1
+  - export PATH="$PATH:`pwd`/flutter/bin"
+  - flutter doctor
 script:
-#  - ./flutter/bin/flutter test --update-goldens
-  - ./flutter/bin/flutter test
+  - flutter pub get
+  - flutter test
