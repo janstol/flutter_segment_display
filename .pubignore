@@ -12,6 +12,13 @@ test/goldens/*_masterImage.png
 .github/
 *.iml
 
+# Generated Android/iOS plugin boilerplate
+android/
+ios/
+
+# Test failure artifacts
+test/failures/
+
 # Example app (not needed by package consumers)
 example/android/
 example/ios/
