@@ -8,6 +8,7 @@ test/goldens/*_masterImage.png
 
 # Development / IDE files
 *.local.*
+.local/
 .mise.toml
 .github/
 *.iml

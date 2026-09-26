@@ -19,6 +19,7 @@ class _AppState extends State<App> {
   late Color _accentColor;
   late String _text;
   late TextEditingController _controller;
+  bool _showDisabledDividers = false;
 
   @override
   void initState() {
@@ -165,6 +166,7 @@ class _AppState extends State<App> {
                 size: 7.0,
                 type: _displayType,
                 style: _segmentStyle,
+                showDisabledDividers: _showDisabledDividers,
               ),
               const SizedBox(height: 100),
               _Display(
@@ -172,6 +174,7 @@ class _AppState extends State<App> {
                 size: 7.0,
                 type: _displayType,
                 style: _segmentStyle,
+                showDisabledDividers: _showDisabledDividers,
               ),
               const SizedBox(height: 50),
               SizedBox(
@@ -188,6 +191,16 @@ class _AppState extends State<App> {
                   },
                 ),
               ),
+              SizedBox(
+                width: 250.0,
+                child: SwitchListTile(
+                  title: const Text('Show disabled decimal points'),
+                  value: _showDisabledDividers,
+                  onChanged: (value) {
+                    setState(() => _showDisabledDividers = value);
+                  },
+                ),
+              ),
             ],
           ),
         ),
@@ -201,20 +214,37 @@ class _Display extends StatelessWidget {
   final int type;
   final double size;
   final SegmentStyle style;
+  final bool showDisabledDividers;
 
   const _Display({
     required this.value,
     required this.type,
     required this.style,
     required this.size,
+    required this.showDisabledDividers,
   });
 
   @override
   Widget build(BuildContext context) {
     final displays = [
-      SevenSegmentDisplay(value: value, size: size, segmentStyle: style),
-      FourteenSegmentDisplay(value: value, size: size, segmentStyle: style),
-      SixteenSegmentDisplay(value: value, size: size, segmentStyle: style),
+      SevenSegmentDisplay(
+        value: value,
+        size: size,
+        segmentStyle: style,
+        showDisabledDividers: showDisabledDividers,
+      ),
+      FourteenSegmentDisplay(
+        value: value,
+        size: size,
+        segmentStyle: style,
+        showDisabledDividers: showDisabledDividers,
+      ),
+      SixteenSegmentDisplay(
+        value: value,
+        size: size,
+        segmentStyle: style,
+        showDisabledDividers: showDisabledDividers,
+      ),
     ];
 
     return displays[type];

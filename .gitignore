@@ -1,5 +1,6 @@
 .DS_Store
 *.local.*
+.local/
 .dart_tool/
 .fvm/
 
