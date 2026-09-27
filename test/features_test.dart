@@ -71,6 +71,22 @@ void main() {
       expect(s.width, 2 * (charW + dotW) + 1 * spacing);
     });
 
+    test('colon does not add a padded character or clip the clock', () {
+      final d = SevenSegmentDisplay(
+        value: '12:34',
+        size: size,
+        showDisabledDividers: true,
+      );
+      final segments = d.createDisplaySegments();
+      final rightmostEdge = segments
+          .map((segment) => segment.path.getBounds().right)
+          .reduce((left, right) => left > right ? left : right);
+
+      expect(segments.length, 4 * (7 + 1) + 1);
+      expect(segments.take(7).any((segment) => segment.isEnabled), isTrue);
+      expect(rightmostEdge, lessThanOrEqualTo(d.computeSize().width));
+    });
+
     test('createDisplaySegments: disabled dot added after each char', () {
       final d = SevenSegmentDisplay(
         value: '12',

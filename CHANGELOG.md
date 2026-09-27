@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Fixed
+
+- Fixed clipping and an extra empty character slot when `showDisabledDividers` is enabled for values containing a colon.
+
 ## [0.6.0] - 2026-04-10
 
 ### Added

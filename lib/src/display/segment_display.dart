@@ -173,7 +173,7 @@ abstract class SegmentDisplay extends StatelessWidget {
     final pairs = _buildRenderPairs(decimalPoint, colon);
 
     // Apply characterCount: left-pad or trim.
-    final charCount = characterCount ?? pairs.length;
+    final charCount = characterCount ?? pairs.where((p) => !p.$3).length;
     final padded = _applyCharacterCount(pairs, charCount);
 
     final segments = <Segment>[];
