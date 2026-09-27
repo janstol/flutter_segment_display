@@ -37,11 +37,66 @@ void main() {
     });
 
     test('single character with characterCount=3', () {
-      final d =
-          SevenSegmentDisplay(value: '1', size: size, characterCount: 3);
+      final d = SevenSegmentDisplay(value: '1', size: size, characterCount: 3);
       final s = d.computeSize();
       // 3 char slots, 2 spacings
       expect(s.width, 3 * charW + 2 * spacing);
+    });
+
+    for (final divider in ['.', ':']) {
+      test('characterCount keeps both digits and $divider in 1${divider}2', () {
+        final d = SevenSegmentDisplay(
+          value: '1${divider}2',
+          size: size,
+          characterCount: 2,
+        );
+        final segments = d.createDisplaySegments();
+
+        expect(segments.length, 15);
+        expect(segments.take(7).any((segment) => segment.isEnabled), isTrue);
+        expect(segments[7].isEnabled, isTrue);
+        expect(segments.skip(8).any((segment) => segment.isEnabled), isTrue);
+        expect(d.computeSize().width, 2 * charW + dotW + 2 * spacing);
+      });
+
+      test('leading $divider does not consume a character slot', () {
+        final d = SevenSegmentDisplay(
+          value: '${divider}12',
+          size: size,
+          characterCount: 2,
+        );
+
+        expect(d.createDisplaySegments().length, 15);
+        expect(d.computeSize().width, 2 * charW + dotW + 2 * spacing);
+      });
+
+      test('trimming removes the first digit and its $divider', () {
+        final d = SevenSegmentDisplay(
+          value: '1${divider}2',
+          size: size,
+          characterCount: 1,
+        );
+        final segments = d.createDisplaySegments();
+        final two = SevenSegmentDisplay(value: '2', size: size);
+
+        expect(segments.length, 7);
+        expect(
+          segments.map((segment) => segment.isEnabled),
+          two.createDisplaySegments().map((segment) => segment.isEnabled),
+        );
+        expect(d.computeSize().width, charW);
+      });
+    }
+
+    test('padding counts regular characters, not punctuation', () {
+      final d = SevenSegmentDisplay(
+        value: '1.2',
+        size: size,
+        characterCount: 3,
+      );
+
+      expect(d.createDisplaySegments().length, 3 * 7 + 1);
+      expect(d.computeSize().width, 3 * charW + dotW + 3 * spacing);
     });
   });
 

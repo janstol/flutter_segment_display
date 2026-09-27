@@ -25,13 +25,11 @@ abstract class SegmentDisplay extends StatelessWidget {
   /// Example: [DefaultSegmentStyle], [HexSegmentStyle]
   final SegmentStyle segmentStyle;
 
-  /// Number of characters to display, used when building display.
+  /// Number of regular character slots to display. Decimal points and colons
+  /// do not consume slots. When omitted, all of [value] is displayed.
   ///
-  /// The [value] length will be used when no count is provided.
-  ///
-  /// If [characterCount] > [value.length] then text will be left padded.
-  /// This also means if [characterCount] < [value.length] then
-  /// only last X characters will be displayed (based on [characterCount]).
+  /// Extra slots are padded on the left. When there are too many regular
+  /// characters, the leftmost ones and their following dividers are removed.
   ///
   /// For example:
   ///  * [characterCount] is set to 3 and [value] value to "1" -
@@ -125,17 +123,14 @@ abstract class SegmentDisplay extends StatelessWidget {
 
   /// Default rendering: dividers only appear when present in [value].
   List<Segment> _createDisplaySegmentsDefault() {
-    final charCount = characterCount ?? value.length;
+    final characters = _defaultCharacters();
     final segments = <Segment>[];
     final dividers = CharacterSegmentMap.dividerCharacters.values;
 
     double indent = 0;
     bool isFirst = true;
 
-    for (var i = value.length - charCount; i < value.length; i++) {
-      var char = '';
-      if (i >= 0 && i < value.length) char = value[i];
-
+    for (final char in characters) {
       if (!isFirst) indent += characterSpacing;
       isFirst = false;
 
@@ -160,6 +155,32 @@ abstract class SegmentDisplay extends StatelessWidget {
     }
 
     return segments;
+  }
+
+  /// Applies [characterCount] to regular characters while keeping their
+  /// following dividers with them.
+  List<String> _defaultCharacters() {
+    final characters = value.split('');
+    if (characterCount == null) return characters;
+
+    final dividers = CharacterSegmentMap.dividerCharacters.values;
+    final regularCount =
+        characters.where((char) => !dividers.contains(char)).length;
+    if (regularCount <= characterCount!) {
+      return [
+        ...List.filled(characterCount! - regularCount, ''),
+        ...characters,
+      ];
+    }
+
+    if (characterCount! <= 0) return [];
+    var remaining = characterCount!;
+    for (var i = characters.length - 1; i >= 0; i--) {
+      if (!dividers.contains(characters[i]) && --remaining == 0) {
+        return characters.sublist(i);
+      }
+    }
+    return characters;
   }
 
   /// Rendering with [showDisabledDividers]: a decimal point is always shown
@@ -238,8 +259,7 @@ abstract class SegmentDisplay extends StatelessWidget {
         continue;
       }
       // Regular character — peek for following dot.
-      final hasDot =
-          i + 1 < value.length && value[i + 1] == decimalPoint;
+      final hasDot = i + 1 < value.length && value[i + 1] == decimalPoint;
       result.add((char, hasDot, false));
       i += hasDot ? 2 : 1;
     }
@@ -283,8 +303,7 @@ abstract class SegmentDisplay extends StatelessWidget {
           CharacterSegmentMap.dividerCharacters['decimalPoint']!;
       final colon = CharacterSegmentMap.dividerCharacters['colon']!;
       final pairs = _buildRenderPairs(decimalPoint, colon);
-      final charCount = characterCount ??
-          pairs.where((p) => !p.$3).length;
+      final charCount = characterCount ?? pairs.where((p) => !p.$3).length;
       final colonCount = pairs.where((p) => p.$3).length;
       final totalItems = charCount + colonCount;
 
@@ -305,11 +324,10 @@ abstract class SegmentDisplay extends StatelessWidget {
 
     // Default sizing.
     final dividers = CharacterSegmentMap.dividerCharacters.values;
-    final charCount = characterCount ??
-        value.split('').where((c) => !dividers.contains(c)).length;
-    final dividerCharCount =
-        value.split('').where(dividers.contains).length;
-    final totalItems = charCount + dividerCharCount;
+    final characters = _defaultCharacters();
+    final dividerCharCount = characters.where(dividers.contains).length;
+    final charCount = characters.length - dividerCharCount;
+    final totalItems = characters.length;
 
     final charsWidth = charCount * (2 * segmentSize.width + segmentSize.height);
     final dividersWidth = dividerCharCount * segmentSize.width;
