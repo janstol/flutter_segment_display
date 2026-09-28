@@ -7,8 +7,6 @@ analyzer:
     todo: ignore
     dead_code: info
     invalid_assignment: warning
-  exclude:
-    - "test/**"
 
 linter:
   rules:
