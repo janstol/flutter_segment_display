@@ -192,6 +192,85 @@ void main() {
   });
 
   // ---------------------------------------------------------------------------
+  // Rendered bounds must fill exactly the area reported by computeSize
+  // ---------------------------------------------------------------------------
+  group('rendered bounds match computeSize', () {
+    final styles = <SegmentStyle>[
+      const DefaultSegmentStyle(),
+      HexSegmentStyle(),
+      RectSegmentStyle(),
+    ];
+    final cases = <(String, int?)>[
+      ('1.2', null),
+      ('1:2', null),
+      ('12.', null),
+      ('12:34', null),
+      ('.12', 2),
+      (':12', 2),
+      ('1.2', 1),
+      ('1:2', 1),
+      ('123', 1),
+      ('1', 3),
+      ('1.2', 3),
+      ('1:2', 3),
+    ];
+
+    for (final showDisabledDividers in [false, true]) {
+      for (final (value, characterCount) in cases) {
+        test(
+            '"$value", characterCount=$characterCount, '
+            'showDisabledDividers=$showDisabledDividers', () {
+          for (final style in styles) {
+            for (final display in <SegmentDisplay>[
+              SevenSegmentDisplay(
+                value: value,
+                size: size,
+                characterCount: characterCount,
+                segmentStyle: style,
+                showDisabledDividers: showDisabledDividers,
+              ),
+              FourteenSegmentDisplay(
+                value: value,
+                size: size,
+                characterCount: characterCount,
+                segmentStyle: style,
+                showDisabledDividers: showDisabledDividers,
+              ),
+              SixteenSegmentDisplay(
+                value: value,
+                size: size,
+                characterCount: characterCount,
+                segmentStyle: style,
+                showDisabledDividers: showDisabledDividers,
+              ),
+            ]) {
+              final bounds = display
+                  .createDisplaySegments()
+                  .map((segment) => segment.path.getBounds())
+                  .reduce((a, b) => a.expandToInclude(b));
+              final displaySize = display.computeSize();
+              final reason = '${display.runtimeType} with ${style.runtimeType}';
+
+              expect(bounds.left, closeTo(0, 1e-9), reason: reason);
+              expect(bounds.top, closeTo(0, 1e-9), reason: reason);
+              expect(
+                bounds.right,
+                closeTo(displaySize.width, 1e-9),
+                reason: reason,
+              );
+              expect(
+                bounds.bottom,
+                closeTo(displaySize.height, 1e-9),
+                reason: reason,
+              );
+            }
+          }
+        });
+      }
+    }
+  });
+
+  // ---------------------------------------------------------------------------
   // Issue #1 — customCharacterMap
   // ---------------------------------------------------------------------------
   group('customCharacterMap', () {
